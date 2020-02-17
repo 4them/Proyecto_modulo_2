@@ -2,13 +2,19 @@ const express = require("express")
 const passport = require('passport')
 const router = express.Router()
 const User = require("../models/user.model")
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+
+// Multer setup
+const multer = require('multer')
+
+// Cloudinary
+const uploadCloud = require('../configs/cloudinary.config')
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
-
-router.get("/login", (req, res, next) => {
+router.get("/login", ensureLoggedOut(), (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") })
 })
 
@@ -19,13 +25,20 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }))
 
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup")
+router.get("/signup",ensureLoggedOut(),(req, res, next) => {
+  res.render("auth/signup",{ message: req.flash('error') })
 })
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup",[ensureLoggedOut(), uploadCloud.single('photoupload')],(req, res, next) => {
   const username = req.body.username
   const password = req.body.password
+
+  const email = req.body.email
+  const picture = req.file.url
+
+  console.log(req.body)
+  console.log(req.file)
+
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" })
     return
@@ -42,7 +55,9 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      email,
+      picture
     })
 
     newUser.save()
@@ -55,7 +70,15 @@ router.post("/signup", (req, res, next) => {
   })
 })
 
-router.get("/logout", (req, res) => {
+router.get('/profile',ensureLoggedIn('/auth/login'), (req, res) => {
+  
+    res.render('auth/profile', {
+      user: req.user
+    })
+  
+})
+
+router.get("/logout", ensureLoggedIn('/auth/login'),(req, res) => {
   req.logout()
   res.redirect("/")
 })

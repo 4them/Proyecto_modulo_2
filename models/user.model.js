@@ -6,6 +6,10 @@ const userSchema = new Schema({
   password: String,
   picture: String,
   email: String,
+  property: [{ 
+    type: Schema.Types.ObjectId,
+    ref: 'Card'
+  }],
   favorites:  [{ 
     type: Schema.Types.ObjectId,
     ref: 'Card'
