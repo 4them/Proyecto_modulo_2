@@ -1,9 +1,11 @@
 const express = require("express")
 const router = express.Router()
 const User = require("../models/user.model")
-const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-router.get('/',ensureLoggedIn('/auth/login'), (req, res) => {
+// Cloudinary
+const uploadCloud = require('../configs/cloudinary.config')
+
+router.get('/', (req, res) => {
   
     res.render('auth/profile', {
       user: req.user
@@ -19,11 +21,14 @@ router.get('/edit', (req,res) =>{
    .catch(err => console.log(err))
 })
 
-router.post('/edit/:id', (req, res) => {
-  
+router.post('/edit/:id', uploadCloud.single('picture'),(req, res) => {
+
+  console.log(req.file)
     const userId = req.params.id
-  
-    Celebrity.findByIdAndUpdate(userId, req.body)
+    const picture = req.file.url
+    const { username,email} = req.body
+
+    User.findByIdAndUpdate(userId, {username,email,picture})
       .then(x => res.redirect('/profile'))//`/celebrities/details/${celebrityId}`))
       .catch(err => console.log(err))
   })

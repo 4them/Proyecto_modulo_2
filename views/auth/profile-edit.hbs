@@ -1,14 +1,14 @@
 <h1>Editar Famoso</h1>
 
-<form action="/profile/edit/{{_id}}" method="post">
+<form action="/profile/edit/{{_id}}" method="post" enctype="multipart/form-data">
     <label for="">Username:</label>
     <input type="text" name="username" value="{{username}}"><br>
 
     <label for="">Email:</label>
     <input type="text" name="email" value="{{email}}"><br>
 
-    <label for="">Frase celebre:</label>
-    <input type="text" name="description" value="{{catchPhrase}}"><br>
+    <label for="picture">Profile image</label>
+    <input type="file" name="picture">
 
     <button type="submit">Editar</button>
 </form>

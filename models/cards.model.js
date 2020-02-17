@@ -10,6 +10,10 @@ const cardSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Element'
     }],
+    comments: [{
+      type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }],
     imgPath: String,
     text: String,
     nasaDes: String
