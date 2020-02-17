@@ -25,11 +25,11 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }))
 
-router.get("/signup",ensureLoggedOut(),(req, res, next) => {
-  res.render("auth/signup",{ message: req.flash('error') })
+router.get("/signup", ensureLoggedOut(), (req, res, next) => {
+  res.render("auth/signup", { message: req.flash('error') })
 })
 
-router.post("/signup",[ensureLoggedOut(), uploadCloud.single('photoupload')],(req, res, next) => {
+router.post("/signup", [ensureLoggedOut(), uploadCloud.single('picture')], (req, res, next) => {
   const username = req.body.username
   const password = req.body.password
 
@@ -61,24 +61,24 @@ router.post("/signup",[ensureLoggedOut(), uploadCloud.single('photoupload')],(re
     })
 
     newUser.save()
-    .then(() => {
-      res.redirect("/")
-    })
-    .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" })
-    })
+      .then(() => {
+        res.redirect("/")
+      })
+      .catch(err => {
+        res.render("auth/signup", { message: "Something went wrong" })
+      })
   })
 })
 
-router.get('/profile',ensureLoggedIn('/auth/login'), (req, res) => {
-  
-    res.render('auth/profile', {
-      user: req.user
-    })
-  
+router.get('/profile', ensureLoggedIn('/auth/login'), (req, res) => {
+
+  res.render('auth/profile', {
+    user: req.user
+  })
+
 })
 
-router.get("/logout", ensureLoggedIn('/auth/login'),(req, res) => {
+router.get("/logout", ensureLoggedIn('/auth/login'), (req, res) => {
   req.logout()
   res.redirect("/")
 })
