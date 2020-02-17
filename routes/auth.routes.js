@@ -70,14 +70,6 @@ router.post("/signup",[ensureLoggedOut(), uploadCloud.single('photoupload')],(re
   })
 })
 
-router.get('/profile',ensureLoggedIn('/auth/login'), (req, res) => {
-  
-    res.render('auth/profile', {
-      user: req.user
-    })
-  
-})
-
 router.get("/logout", ensureLoggedIn('/auth/login'),(req, res) => {
   req.logout()
   res.redirect("/")
