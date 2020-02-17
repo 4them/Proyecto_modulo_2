@@ -20,5 +20,6 @@ app.locals.title = '4THEM'
 // Base URLS
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
+app.use('/test', require('./routes/testRoutes'))
 
 module.exports = app
