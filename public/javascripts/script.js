@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-const baseNASAUrl = "https://images-api.nasa.gov"
-const nasaImageAPI = new APIHandler(baseNASAUrl);
+// const baseNASAUrl = "https://images-api.nasa.gov"
+const nasaAPIHandler = new APIHandler();
 
 document.querySelector("#testAPI").onclick = () => {
 
-  nasaImageAPI.getPlanet()
+  nasaAPIHandler.getPlanet()
 
 }
 
