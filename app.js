@@ -15,7 +15,7 @@ require('./configs/authentication.cofing')(app)
 require('./configs/hbs.config')
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator'
+app.locals.title = '4THEM'
 
 // Base URLS
 app.use('/', require('./routes/index'))
