@@ -2,20 +2,17 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const cardSchema = new Schema({
-  user: { 
+    userID: { 
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-  card: [{
-      path: String,
-      wikiname: String,
-      height: Number,
-      width: Number,
-      posX: Number,
-      posY: Number
-  }],
-  text: String
-
+    elements: [{ 
+        type: Schema.Types.ObjectId,
+        ref: 'Element'
+    }],
+    imgPath: String,
+    text: String,
+    nasaDes: String
 }, {
   timestamps: {
     createdAt: 'created_at',

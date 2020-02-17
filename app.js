@@ -18,8 +18,9 @@ require('./configs/hbs.config')
 app.locals.title = '4THEM'
 
 // Base URLS
-app.use('/', require('./routes/index'))
-app.use('/auth', require('./routes/auth'))
+
 app.use('/test', require('./routes/testRoutes'))
+app.use('/', require('./routes/index.route'))
+app.use('/auth', require('./routes/auth.route'))
 
 module.exports = app
