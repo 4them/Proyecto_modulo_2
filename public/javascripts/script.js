@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const nasaAPIHandler = new APIHandler();
 
 
   console.log('IronGenerator JS imported successfully!');
@@ -6,14 +7,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-// const baseNASAUrl = "https://images-api.nasa.gov"
-const nasaAPIHandler = new APIHandler();
-
-document.querySelector("#testAPI").onclick = () => {
-
-  nasaAPIHandler.getPlanet()
-
-}
 

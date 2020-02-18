@@ -3,9 +3,9 @@ const Card = require('../models/cards.model');
 const Comment = require('../models/comments.model');
 const Element = require('../models/elements.model');
 const User = require('../models/user.model');
+require("dotenv").config()
 
-const dbTitle = 'four-them';
-mongoose.connect(`mongodb://localhost/${dbTitle}`);
+mongoose.connect(process.env.DB_REMOTE);
 
 const cards = [{
 
@@ -44,5 +44,5 @@ const cards = [{
 
 
 Card.insertMany(cards)
-  .then(loadedCelebrity => console.log(loadedCelebrity))
+  .then(loadedCards=> console.log(loadedCards))
   .catch(err => console.log("Error al subir los celebrities tipo", err))

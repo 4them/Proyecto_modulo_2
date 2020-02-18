@@ -16,26 +16,26 @@ class APIHandler {
   }
 
   getBackgroundPic() {
-    this.axiosApp.get(`/search?q=${galaxyGalery}`)
-      .then(searchResult => {
+    return this.axiosApp.get(`/search?q=${galaxyGalery}`)
+    // .then(searchResult => {
+    //   return searchResult
+    //   // const resultArr = searchResult.data.collection.items
 
-        const resultArr = searchResult.data.collection.items
+    //   // const imageUrl = resultArr[15].links[0].href  // links to thumbprints
 
-        const imageUrl = resultArr[5].links[0].href  // links to thumbprints
+    //   // return imageUrl.replace("~thumb", "~medium") //change thumb for medium for large image
 
-        return imageUrl.replace("~thumb", "~medium") //change thumb for medium for large image
-
-      })
-      .catch(err => console.log("error al mostrar los resultados de la busqueda", err))
+    // })
+    // .catch(err => console.log("error al mostrar los resultados de la busqueda", err))
   }
 
   getBackgroundDescription() {
-    this.axiosApp.get(`/search?q=${galaxyGalery}`)
+    return this.axiosApp.get(`/search?q=${galaxyGalery}`)
       .then(searchResult => {
 
         const resultArr = searchResult.data.collection.items
 
-        const nasaDes = resultArr[5].data[0].description
+        const nasaDes = resultArr[15].data[0].description
 
         return nasaDes
 
@@ -86,7 +86,7 @@ class APIHandler {
 
     ]
 
-    this.exoPlanetApp.get(`&table=exoplanets&format=json`)
+    return this.exoPlanetApp.get(`&table=exoplanets&format=json&select=pl_name,pl_radj,pl_hostname`)
       .then(exoplanets => {
 
         const planet = {
@@ -107,7 +107,7 @@ class APIHandler {
 
         }
 
-        console.log(planet)
+        return planet
       })
 
   }
