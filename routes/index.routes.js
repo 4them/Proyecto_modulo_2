@@ -13,7 +13,6 @@ router.get('/', (req, res, next) => {
 
       res.render('index', { cards: allCards })
 
-      console.log(allcards)
     })
     .catch(err => console.log("error loading the cards", err))
 

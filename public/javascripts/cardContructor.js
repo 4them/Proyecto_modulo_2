@@ -4,6 +4,8 @@ const axiosApp = axios.create({ baseURL: "http://localhost:3000/card" })
 
 const nasaAPIHandler = new APIHandler();
 
+const cardFigure = document.querySelector("card")
+
 const picBg = document.querySelector("#picBg")
 
 let cardConstructor = document.querySelector("#cardConstructor").value
@@ -19,8 +21,6 @@ document.onkeyup = e => {
 
     cardConstructor = document.querySelector("#cardConstructor").value
 
-
-
     console.log(cardConstructor.split(" "))
 
     if (cardConstructor.split(" ").length <= 2) {
@@ -30,6 +30,8 @@ document.onkeyup = e => {
           const resultArr = searchResult.data.collection.items
           const imageUrl = resultArr[34].links[0].href  // links to thumbprints
           picBg.src = imageUrl.replace("~thumb", "~medium") //change thumb for medium for large image
+
+          // cardFigure.style = `background-image: ${imageUrl.replace("~thumb", "~medium")}`
 
           //update card object
           card.imagePath = imageUrl.replace("~thumb", "~medium")
@@ -43,7 +45,7 @@ document.onkeyup = e => {
 
       nasaAPIHandler.getPlanet()
         .then(result => {
-          document.querySelector("#card").innerHTML += `<img style= 'top:${result.posy * 100}%;left:${result.posx * 100}%; height:${result.height}px; width:${result.width}px' class='planets' src=${result.path} alt=${result.wikiname}></img>`
+          document.querySelector("#card").innerHTML += `<img style= 'top:${result.posy * 100}%;left:${result.posx * 100}%; height:${result.height / 2}%; width:${result.width / 3.5}%' class='planets' src=${result.path} alt=${result.wikiname}></img>`
 
           //push element to the elemtn list
           elements.push(result)

@@ -1,0 +1,32 @@
+<h1>Detail</h1>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="card-details">
+
+        <figure>
+          <img src="{{imgPath}}" alt="card">
+        </figure>
+
+        <h4>{{userID.username}}</h4>
+        <h6>{{text}}</h6>
+      </div>
+    </div>
+
+    <div class="col-md-10">
+      {{#each comments}}
+
+      <h5>{{comments.userID.username}}</h5>
+
+      <h6>{{comments.cardText}}</h6>
+
+      {{/each}}
+    </div>
+
+
+
+  </div>
+</div>
