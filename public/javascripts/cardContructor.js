@@ -45,7 +45,7 @@ document.onkeyup = e => {
 
       nasaAPIHandler.getPlanet()
         .then(result => {
-          document.querySelector("#card").innerHTML += `<img style= 'top:${result.posy * 100}%;left:${result.posx * 100}%; height:${result.height / 2}%; width:${result.width / 3.5}%' class='planets' src=${result.path} alt=${result.wikiname}></img>`
+          document.querySelector("#card").innerHTML += `<div  style= 'background: url("${result.path}")center no-repeat; top:${result.posy * 100}%;left:${result.posx * 100}%; height:${result.height / 2}%; width:${result.width / 3.5}%' class='planets' </div>`
 
           //push element to the elemtn list
           elements.push(result)

@@ -15,18 +15,34 @@
         <h6>{{text}}</h6>
       </div>
     </div>
+  </div>
+
+  <div class="row">
 
     <div class="col-md-10">
-      {{#each comments}}
+      <input class="comment" type="text" placeholder="Add your comment">
 
+    </div>
+
+    <div class="col-md-6">
+      <h2>Comments</h2>
+    </div>
+
+    {{#each comments}}
+
+
+
+
+    <div class="col-md-10">
       <h5>{{comments.userID.username}}</h5>
 
       <h6>{{comments.cardText}}</h6>
-
-      {{/each}}
     </div>
 
-
+    {{/each}}
 
   </div>
+
+
+</div>
 </div>
