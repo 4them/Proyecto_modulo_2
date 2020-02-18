@@ -1,0 +1,48 @@
+<h1>Detail</h1>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="card-details">
+
+        <figure>
+          <img src="{{imgPath}}" alt="card">
+        </figure>
+
+        <h4>{{userID.username}}</h4>
+        <h6>{{text}}</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-10">
+      <input class="comment" type="text" placeholder="Add your comment">
+
+    </div>
+
+    <div class="col-md-6">
+      <h2>Comments</h2>
+    </div>
+
+    {{#each comments}}
+
+
+
+
+    <div class="col-md-10">
+      <h5>{{comments.userID.username}}</h5>
+
+      <h6>{{comments.cardText}}</h6>
+    </div>
+
+    {{/each}}
+
+  </div>
+
+
+</div>
+</div>

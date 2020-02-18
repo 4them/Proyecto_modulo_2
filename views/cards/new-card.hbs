@@ -6,16 +6,13 @@
   <div class="row justify-content-center">
     <div class="col-md-10">
       <figure id="card">
-        <img id="picBg" src="" alt="#">
+        <img id="picBg" src="#" alt="#">
         <p id="message">Hola</p>
       </figure>
 
     </div>
   </div>
 </div>
-
-
-
 
 
 
@@ -45,6 +42,7 @@
 
     border-radius: 50%;
     position: absolute;
+    box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.9)
   }
 
   #message {
@@ -53,7 +51,9 @@
 
   #picBg {
     width: 100%;
+    height: 100%;
     position: absolute;
+    object-fit: cover;
 
   }
 </style>
