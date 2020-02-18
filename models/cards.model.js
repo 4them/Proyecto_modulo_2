@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
-const Schema   = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const cardSchema = new Schema({
-    userID: { 
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    elements: [{ 
-        type: Schema.Types.ObjectId,
-        ref: 'Element'
-    }],
-    comments: [{
-      type: Schema.Types.ObjectId,
-        ref: 'Comment'
-    }],
-    imgPath: String,
-    text: String,
-    nasaDes: String
+  userID: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  elements: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Element'
+  }],
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
+  imgPath: String,
+  text: String,
+  nasaDes: String
 }, {
   timestamps: {
     createdAt: 'created_at',
