@@ -5,23 +5,40 @@ const Elements = require('../models/elements.model')
 const User = require('../models/user.model')
 const Comment = require('../models/comments.model')
 
-
+const Element = require('../models/elements.model')
 
 router.get("/new-card", (req, res, next) => {
   res.render("cards/new-card")
 })
 
-router.post('/new-card', (req, res, next) => {
 
-  Card.create({
-    userId: req.user._id,
-    text: req.body.text
-    //imcluir api informacion
-    // imgPath:,
-    // nasaDes:
-  })
-    .then(() => res.redirect('/'))
-    .catch(err => next(err))
+router.post('/api/new-card', (req, res, next) => {
+  let listIdElem = []
+
+  Element.insertMany(req.body.elements)
+    .then(allElements => allElements.forEach(elem => listIdElem.push(elem._id)))
+    .then(x => Card.create({
+      userId: req.user._id,
+      text: req.body.card.text,
+      imgPath: req.body.card.imagePath,
+      nasaDes: req.body.card.nasaDes,
+      elements: listIdElem
+    }))
+    .then(cardId => {
+      const userProperty = {
+        $push: {
+          property: cardId._id
+        }
+      }
+      User.findByIdAndUpdate(req.user._id, userProperty)
+        .then(x => console.log(x))
+        .catch(err => console.error('Error al meter mas card ids al usuario', err))
+    })
+    .catch(err => console.error('Algo ha petado', err))
+
+  // Promise.all([promise1, promise2])
+  //   .then(results => res.redirect('/profile'))//res.render('coasters/edit-coaster', { coaster: results[0], parks: results[1] }))
+  //   .catch(err => next(new Error(err)))
 })
 
 router.get("/:id", (req, res, next) => {

@@ -1,21 +1,16 @@
 
 
-const axiosApp = axios.create({ baseURL: "http://localhost:3000/card" })
-
+const axiosApp = axios.create({ baseURL: "http://localhost:3000/card" })//https://app-4them.herokuapp.com/
 const nasaAPIHandler = new APIHandler();
 
 const cardFigure = document.querySelector("card")
 
 const picBg = document.querySelector("#picBg")
-
 let cardConstructor = document.querySelector("#cardConstructor").value
-
 const elements = []
-
 const card = {}
 
 document.onkeyup = e => {
-
 
   if (e.keyCode === 32) {
 
@@ -42,7 +37,6 @@ document.onkeyup = e => {
         .then(description => card.nasaDes = description)
 
     } else {
-
       nasaAPIHandler.getPlanet()
         .then(result => {
           document.querySelector("#card").innerHTML += `<div  style= 'background: url("${result.path}")center no-repeat; top:${result.posy * 100}%;left:${result.posx * 100}%; height:${result.height / 2}%; width:${result.width / 3.5}%' class='planets' </div>`
@@ -51,14 +45,14 @@ document.onkeyup = e => {
           elements.push(result)
         })
 
-      console.log(elements)
-      console.log(card)
     }
   }
 }
 
 document.querySelector("#saveCard").onclick = () => {
-
+  //cambiar que se pinte en el txt
+  let textCard = document.querySelector("#cardConstructor").value
+  card.text = textCard
   axiosApp.post(`/api/new-card`, { card, elements })
     .then(sent => console.log(sent))
     .catch(err => console.log("error al enviar el post ", err))

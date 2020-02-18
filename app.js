@@ -4,7 +4,6 @@ require('dotenv').config()
 require('./configs/mongoose.config')
 require('./configs/debugger.config')
 
-
 // App
 const express = require('express')
 const app = express()
