@@ -1,27 +1,17 @@
 
 
-const axiosApp = axios.create({ baseURL: "https://app-4them.herokuapp.com/" })
-
+const axiosApp = axios.create({ baseURL: "http://localhost:3000/card" })//https://app-4them.herokuapp.com/
 const nasaAPIHandler = new APIHandler();
-
 const picBg = document.querySelector("#picBg")
-
 let cardConstructor = document.querySelector("#cardConstructor").value
-
 const elements = []
-
 const card = {}
 
 document.onkeyup = e => {
 
-
   if (e.keyCode === 32) {
 
     cardConstructor = document.querySelector("#cardConstructor").value
-
-
-
-    console.log(cardConstructor.split(" "))
 
     if (cardConstructor.split(" ").length <= 2) {
 
@@ -40,7 +30,6 @@ document.onkeyup = e => {
         .then(description => card.nasaDes = description)
 
     } else {
-
       nasaAPIHandler.getPlanet()
         .then(result => {
           document.querySelector("#card").innerHTML += `<img style= 'top:${result.posy * 100}%;left:${result.posx * 100}%; height:${result.height}px; width:${result.width}px' class='planets' src=${result.path} alt=${result.wikiname}></img>`
@@ -49,14 +38,14 @@ document.onkeyup = e => {
           elements.push(result)
         })
 
-      console.log(elements)
-      console.log(card)
     }
   }
 }
 
 document.querySelector("#saveCard").onclick = () => {
-
+  //cambiar que se pinte en el txt
+  let textCard = document.querySelector("#cardConstructor").value
+  card.text = textCard
   axiosApp.post(`/api/new-card`, { card, elements })
     .then(sent => console.log(sent))
     .catch(err => console.log("error al enviar el post ", err))
