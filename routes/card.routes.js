@@ -6,7 +6,7 @@ router.get("/new-card", (req, res, next) => {
     res.render("cards/new-card")
   })
 
-router.post('/new-card', (req,res,next) => {
+router.post('/api/new-card', (req,res,next) => {
   
   Card.create({
     userId: req.user._id,
