@@ -1,11 +1,12 @@
 const express = require("express")
 const router = express.Router()
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const User = require("../models/user.model")
 
 // Cloudinary
 const uploadCloud = require('../configs/cloudinary.config')
 
-router.get('/', (req, res) => {
+router.get('/',ensureLoggedIn('/auth/login'),(req, res) => {
   
     res.render('auth/profile', {
       user: req.user
