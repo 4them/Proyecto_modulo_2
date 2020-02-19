@@ -57,7 +57,6 @@ router.get("/:id", (req, res, next) => {
     .then(picFound => {
       res.render("cards/detail-card", picFound)
     })
-
 })
 
 

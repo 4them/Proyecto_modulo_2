@@ -8,9 +8,23 @@ const uploadCloud = require('../configs/cloudinary.config')
 
 router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
 
-  res.render('auth/profile', {
-    user: req.user
-  })
+  const profilesToShow = []
+
+  User.find()
+    .then(allProfiles => {
+
+      for (let i = 0; i < 5; i++) {
+        profilesToShow.push(allProfiles[Math.round(Math.random() * allProfiles.length)])
+      }
+
+      console.log(profilesToShow)
+
+      res.render('auth/profile', {
+        user: req.user,
+        suggestions: profilesToShow
+      })
+
+    })
 })
 
 router.get('/edit', (req, res) => {
