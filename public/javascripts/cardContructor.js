@@ -24,11 +24,11 @@ document.onkeyup = e => {
     console.log(cardConstructor.split(" "))
 
     if (cardConstructor.split(" ").length <= 2) {
-
+      console.log("anabella")
       nasaAPIHandler.getBackgroundPic()
         .then(searchResult => {
           const resultArr = searchResult.data.collection.items
-          const imageUrl = resultArr[34].links[0].href  // links to thumbprints
+          const imageUrl = resultArr[10].links[0].href  // links to thumbprints
           picBg.src = imageUrl.replace("~thumb", "~medium") //change thumb for medium for large image
 
           // cardFigure.style = `background-image: ${imageUrl.replace("~thumb", "~medium")}`
