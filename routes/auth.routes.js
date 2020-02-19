@@ -53,11 +53,13 @@ router.post("/signup", [ensureLoggedOut(), uploadCloud.single('picture')], (req,
       email,
       picture
     })
-
+    
     newUser.save()
-      .then(() => {
-        res.redirect("/")
-      })
+    .then(user => {
+        req.login(user, function(err) {
+        if (err) { return next(err); }
+        return res.redirect('/profile');
+      })})
       .catch(err => {
         res.render("auth/signup", { message: "Something went wrong" })
       })
