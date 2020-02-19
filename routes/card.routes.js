@@ -4,17 +4,17 @@ const Card = require('../models/cards.model')
 const Elements = require('../models/elements.model')
 const User = require('../models/user.model')
 const Comment = require('../models/comments.model')
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 const Element = require('../models/elements.model')
 
-router.get("/new-card", (req, res, next) => {
+router.get("/new-card", ensureLoggedIn('/auth/login') ,(req, res, next) => {
   res.render("cards/new-card")
 })
 
-
 router.post('/api/new-card', (req, res, next) => {
   let listIdElem = []
-
+ 
   Element.insertMany(req.body.elements)
     .then(allElements => allElements.forEach(elem => listIdElem.push(elem._id)))
     .then(x => Card.create({
@@ -35,10 +35,6 @@ router.post('/api/new-card', (req, res, next) => {
         .catch(err => console.error('Error al meter mas card ids al usuario', err))
     })
     .catch(err => console.error('Algo ha petado', err))
-
-  // Promise.all([promise1, promise2])
-  //   .then(results => res.redirect('/profile'))//res.render('coasters/edit-coaster', { coaster: results[0], parks: results[1] }))
-  //   .catch(err => next(new Error(err)))
 })
 
 router.get("/:id", (req, res, next) => {

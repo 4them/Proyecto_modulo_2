@@ -2,15 +2,28 @@ const express = require("express")
 const router = express.Router()
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const User = require("../models/user.model")
+const Card = require('../models/cards.model')
+const Elements = require('../models/elements.model')
 
 // Cloudinary
 const uploadCloud = require('../configs/cloudinary.config')
 
 router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
 
-  res.render('auth/profile', {
-    user: req.user
+  User.findById(req.user._id)
+  .populate({
+      path: 'property',
+      populate: {
+        path: 'elements'
+      }
+    })
+
+  .then(propertyCards =>{
+    console.log(propertyCards[0]) //[0].elements .imgPath
+    res.render('auth/profile', {user: req.user,cards: propertyCards.property})
   })
+  .catch(err => console.log('Tienes un error al mostras las cartas en el perfil',err))
+  
 })
 
 router.get('/edit', (req, res) => {
@@ -24,7 +37,6 @@ router.get('/edit', (req, res) => {
 
 router.post('/edit/:id', uploadCloud.single('picture'), (req, res) => {
 
-  console.log(req.file)
   const userId = req.params.id
   const picture = req.file.url
   const { username, email } = req.body

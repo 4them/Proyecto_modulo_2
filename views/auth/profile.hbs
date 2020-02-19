@@ -3,3 +3,27 @@
 <img src="{{user.picture}}" ></img>
 <a href="/card/new-card">Nueva card</a>
 <a href="/profile/edit">Editar</a>
+
+<div class="container">
+  <h1>Properties</h1>
+  <div class="row">
+    {{#each cards}}
+
+    {{>profileGridPartials this}}
+
+    {{/each}}
+
+  </div>
+</div>
+
+<div class="container">
+  <h1>Favourites</h1>
+  <div class="row">
+    {{#each cards}}
+
+    {{>profileGridPartials this}}
+
+    {{/each}}
+  
+  </div>
+</div>
