@@ -6,8 +6,8 @@ const elementSchema = new Schema({
     wikiname: String,
     height: Number,
     width: Number,
-    posX: Number,
-    posY: Number,
+    posx: Number,
+    posy: Number,
     nasaDes: String,
 }, {
   timestamps: {
