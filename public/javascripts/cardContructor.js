@@ -21,10 +21,19 @@ document.onkeyup = e => {
 
     cardConstructor = document.querySelector("#cardConstructor").value
 
-    console.log(cardConstructor.split(" "))
+    // const cardConstructorLength = cardConstructor.split(" ").length
+
+    // let letterArray = cardConstructor.split(" ")[cardConstructorLength - 2].split("")
+
+    // letterArray = letterArray.reduce((acc, elm) => acc + elm.charCodeAt(0), 0)
+
+    // console.log(letterArray)
+
+
+
+
 
     if (cardConstructor.split(" ").length <= 2) {
-      console.log("anabella")
       nasaAPIHandler.getBackgroundPic()
         .then(searchResult => {
           const resultArr = searchResult.data.collection.items
@@ -50,9 +59,6 @@ document.onkeyup = e => {
           //push element to the elemtn list
           elements.push(result)
         })
-
-      console.log(elements)
-      console.log(card)
     }
   }
 }
