@@ -16,14 +16,23 @@ document.onkeyup = e => {
 
     cardConstructor = document.querySelector("#cardConstructor").value
 
-    console.log(cardConstructor.split(" "))
+    // const cardConstructorLength = cardConstructor.split(" ").length
+
+    // let letterArray = cardConstructor.split(" ")[cardConstructorLength - 2].split("")
+
+    // letterArray = letterArray.reduce((acc, elm) => acc + elm.charCodeAt(0), 0)
+
+    // console.log(letterArray)
+
+
+
+
 
     if (cardConstructor.split(" ").length <= 2) {
-
       nasaAPIHandler.getBackgroundPic()
         .then(searchResult => {
           const resultArr = searchResult.data.collection.items
-          const imageUrl = resultArr[34].links[0].href  // links to thumbprints
+          const imageUrl = resultArr[10].links[0].href  // links to thumbprints
           picBg.src = imageUrl.replace("~thumb", "~medium") //change thumb for medium for large image
 
           // cardFigure.style = `background-image: ${imageUrl.replace("~thumb", "~medium")}`
@@ -44,7 +53,6 @@ document.onkeyup = e => {
           //push element to the elemtn list
           elements.push(result)
         })
-
     }
   }
 }
