@@ -48,7 +48,7 @@ router.post('/edit/:id', uploadCloud.single('picture'), (req, res) => {
   const { username, email } = req.body
 
   User.findByIdAndUpdate(userId, { username, email, picture })
-    .then(x => res.redirect('/profile'))//`/celebrities/details/${celebrityId}`))
+    .then(x => res.redirect('/profile'))
     .catch(err => console.log(err))
 })
 module.exports = router

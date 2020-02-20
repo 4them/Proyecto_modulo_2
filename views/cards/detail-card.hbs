@@ -8,19 +8,18 @@
       <div class="card-details">
 
         <figure>
-          <img src="{{imgPath}}" alt="card">
+          <img src="{{picFound.imgPath}}" alt="card">
         </figure>
 
-        <h4>{{userID.username}}</h4>
-        <h6>{{text}}</h6>
+        <h4>{{picFound.userID.username}}</h4>
+        <h6>{{picFound.text}}</h6>
 
-        <form action="/card/fav/{{_id}}" method="POST">
+        <form action="/card/fav/{{picFound._id}}" method="POST">
           <button>Img fav</button>
         </form>
-        <form action="/card/delete/{{_id}}" method="POST">
-          <button>Delete</button>
-          {{#if ErrorMessage}}
-            {{ErrorMessage}}
+        <form action="/card/delete/{{picFound._id}}" method="POST">
+          {{#if checkUser}}
+            <button>Delete</button>
           {{/if}}
         </form>
       </div>

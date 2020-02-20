@@ -37,7 +37,18 @@ router.post('/api/new-card', (req, res, next) => {
     .catch(err => console.error('Algo ha petado', err))
 })
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id",(req, res, next) => {
+
+    let checkUser = false
+
+    req.user.property.forEach(elm =>  {
+      if ( elm.toString() === req.params.id){
+        checkUser = true
+      }else{
+        checkUser = false
+      }
+    })
+  
 
   const picId = req.params.id
 
@@ -51,16 +62,12 @@ router.get("/:id", (req, res, next) => {
       }
     })
     .then(picFound => {
-      res.render("cards/detail-card", picFound)
+      res.render("cards/detail-card", {picFound,checkUser})
     })
 
 })
 
-
 router.post("/:id", (req, res, next) => {
-
-  console.log(req.body)
-  console.log(req.params.id)
 
   const comment = {
     cardID: req.params.id,
@@ -85,35 +92,33 @@ router.post("/:id", (req, res, next) => {
 })
 
 router.post("/fav/:id" , (req, res, next) =>{
-
-  if (req.user.favorites.includes(req.params.id)){
-    // User.findByIdAndRemove(req.user._id , {favorites:req.params.id})
-    // .then(x => console.log(x))
-    // .catch(err => console.error('Error al borrar el fav', err))
-    res.redirect(`/card/${req.params.id}`)
-    return
-  }
+  
+  let userFav = {}
   const cardID = req.params.id
-  const userFav = {
-    $push: {
-      favorites: cardID
+  if (req.user.favorites.includes(req.params.id)){
+    userFav = {
+      $pull: {
+        favorites: cardID
+      }
+    }
+  }else{
+    userFav = {
+      $push: {
+        favorites: cardID
+      }
     }
   }
   User.findByIdAndUpdate(req.user._id , userFav)
   .then(x => console.log(x))
   .catch(err => console.error('Error al meter los favs', err))
-
   res.redirect(`/card/${req.params.id}`)
+
 })
 
 router.post("/delete/:id" , (req, res , next) => {
 
-  if (req.user.property.includes(req.params.id)){
-    console.log('Holaaaa')
-    res.redirect(`/card/${req.params.id}`)
-    return
-  }
   const cardID = req.params.id
+
   Card.findByIdAndDelete(cardID)
   .then(() => res.redirect('/profile'))
   .catch(err => console.log("Error borrando la card en la BBDD: ", err))
