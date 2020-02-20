@@ -9,7 +9,7 @@ const Elements = require('../models/elements.model')
 const uploadCloud = require('../configs/cloudinary.config')
 
 router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
-
+  console.log("tmabien entra aquiiii")
   const profilesToShow = []
 
   User.find()
@@ -29,6 +29,7 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
           }
         })
         .then(propertyCards => {
+          console.log("entra hasta aqui incluso!!!! ", propertyCards)
           res.render('auth/profile', { user: req.user, cards: propertyCards.property, cardsFav: propertyCards.favorites, suggestions: profilesToShow })
         })
         .catch(err => console.log('Tienes un error al mostras las cartas en el perfil', err))

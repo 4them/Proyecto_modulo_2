@@ -15,7 +15,6 @@ router.get("/new-card", ensureLoggedIn('/auth/login'), (req, res, next) => {
 
 router.post('/api/new-card', (req, res, next) => {
   let listIdElem = []
-
   Element.insertMany(req.body.elements)
     .then(allElements => allElements.forEach(elem => listIdElem.push(elem._id)))
     .then(x => Card.create({
@@ -26,13 +25,19 @@ router.post('/api/new-card', (req, res, next) => {
       elements: listIdElem
     }))
     .then(cardId => {
-      const userProperty = {
+      User.findByIdAndUpdate(req.user._id, {
         $push: {
           property: cardId._id
         }
-      }
-      User.findByIdAndUpdate(req.user._id, userProperty)
-        .then(x => x)
+      }, { new: true })
+        .then(x => {
+          const message = {
+            msg: "Your card was saved in your profile, head there to check it out"
+          }
+
+          res.json(message)
+
+        })
         .catch(err => console.error('Error al meter mas card ids al usuario', err))
     })
     .catch(err => console.error('Algo ha petado', err))
@@ -46,7 +51,7 @@ router.post('/send/:id', (req, res, next) => {
     text: `${req.body.message}, to check you personaul universe check out this link http://http://localhost:3000/card/${req.params.id}`,
     html: `<b>${req.body.message}, to check you personaul universe check out this link http://http://localhost:3000/card/${req.params.id}</b>`
   })
-  res.redirect(`/card/${req.params.id}`)
+    .then(mail => res.redirect(`/card/${req.params.id}`))
 
 })
 
@@ -93,11 +98,11 @@ router.post("/:id", (req, res, next) => {
         }
       }
       Card.findByIdAndUpdate(req.params.id, commentIdToInsert)
-        .then(x => x)
+        .then(x => res.redirect(`/card/${req.params.id}`))
         .catch(err => console.error('Error al meter mas comments el en el card', err))
     })
 
-  res.redirect(`/card/${req.params.id}`)
+
 
 })
 
@@ -167,11 +172,14 @@ router.post('/api/send/new-card', (req, res, next) => {
       console.log(`este es el correo de tu amigo ${req.body.friendEmail}, este es tu usuario ${req.user.username}, este es el texto de la carta ${req.body.card.text}, y este es el link http://http://localhost:3000/card/${cardId._id}`)
 
       User.findByIdAndUpdate(req.user._id, userProperty)
-        .then(x => x)
-        .catch(err => console.error('Error al meter mas card ids al usuario', err))
+        .then(x => {
+          console.log("llego aca")
+          const message = {
+            msg: "Awsome! your message was sent!"
+          }
+          res.json(message)
+        })
     })
-    .then(whatisthis => whatisthis)
-
 
     .catch(err => console.error('Algo ha petado', err))
 })
