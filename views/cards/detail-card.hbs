@@ -1,7 +1,4 @@
 <h1>Detail</h1>
-
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-10">
@@ -30,6 +27,20 @@
 
     <div class="col-md-10">
 
+      <form action="send/{{_id}}" method="POST">
+        <input name="message" type="text" placeholder="Type a message to your friend!">
+        <input name="friendEmail" type="text" placeholder="type your friends email!">
+        <button>Send the card</button>
+      </form>
+
+
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-10">
       <form action="/card/{{_id}}" method="POST">
         <input class="comment" name="comment" type="text" placeholder="Add your comment">
         <button>Submit</button>

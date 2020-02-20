@@ -1,11 +1,13 @@
 
 <h1>{{user.username}}</h1>
 <img src="{{user.picture}}" id="profilePic" ></img>
+
 <a href="/card/new-card">Nueva card</a>
 <a href="/profile/edit">Editar</a>
 
+
 <div class="container">
-  <h1>Properties</h1>
+  <h1>Cards</h1>
   <div class="row">
     {{#each cards}}
 
@@ -17,13 +19,18 @@
 </div>
 
 <div class="container">
-  <h1>Favourites</h1>
+  <h1>Favorites</h1>
   <div class="row">
     {{#each cardsFav}}
 
     {{>profileGridPartials this}}
 
     {{/each}}
-  
+
   </div>
+  {{#each suggestions}}
+
+    <a href="/profile/{{_id}}">{{username}}</a>
+
+    {{/each}}
 </div>
