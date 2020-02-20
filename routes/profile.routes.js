@@ -17,13 +17,19 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
         path: 'elements'
       }
     })
+  .populate({
+    path: 'favorites',
+    populate: {
+      path: 'elements'
+    }
+  })
 
   .then(propertyCards =>{
-    console.log(propertyCards[0]) //[0].elements .imgPath
-    res.render('auth/profile', {user: req.user,cards: propertyCards.property})
+    console.log(propertyCards) //[0].elements .imgPath
+    res.render('auth/profile', {user: req.user,cards: propertyCards.property,cardsFav: propertyCards.favorites})
   })
   .catch(err => console.log('Tienes un error al mostras las cartas en el perfil',err))
-  
+
 })
 
 router.get('/edit', (req, res) => {

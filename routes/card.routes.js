@@ -84,6 +84,43 @@ router.post("/:id", (req, res, next) => {
 
 })
 
+router.post("/fav/:id" , (req, res, next) =>{
+
+  if (req.user.favorites.includes(req.params.id)){
+    // User.findByIdAndRemove(req.user._id , {favorites:req.params.id})
+    // .then(x => console.log(x))
+    // .catch(err => console.error('Error al borrar el fav', err))
+    res.redirect(`/card/${req.params.id}`)
+    return
+  }
+  const cardID = req.params.id
+  const userFav = {
+    $push: {
+      favorites: cardID
+    }
+  }
+  User.findByIdAndUpdate(req.user._id , userFav)
+  .then(x => console.log(x))
+  .catch(err => console.error('Error al meter los favs', err))
+
+  res.redirect(`/card/${req.params.id}`)
+})
+
+router.post("/delete/:id" , (req, res , next) => {
+
+  if (req.user.property.includes(req.params.id)){
+    console.log('Holaaaa')
+    res.redirect(`/card/${req.params.id}`)
+    return
+  }
+  const cardID = req.params.id
+  Card.findByIdAndDelete(cardID)
+  .then(() => res.redirect('/profile'))
+  .catch(err => console.log("Error borrando la card en la BBDD: ", err))
+
+})
+
+
 
 module.exports = router
 

@@ -1,9 +1,53 @@
 <div class="col-md-4">
-  <div class="card">
-    <a href="card/{{_id}}"><img class="card-img-top" src="{{imgPath}}" alt="#"></a>
+  {{!-- <div class="card">
+    <figure id='card'>
+      <a href="card/{{_id}}"><img  src="{{imgPath}}" alt="#" id="picBg"></a>
+      {{#each elements}}
+        <div  style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;' class='planets'></div>
+      {{/each}}
+    </figure>
     <div class="card-body">
       <p class="card-text">{{text}}
       </p>
     </div>
+  </div> --}}
+
+  <div class="card" style="width: 18rem;">
+    <div style='background: url("{{imgPath}}")center no-repeat; height: 300px; width: 300px;'>
+      {{#each elements}}
+        <div  style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;' class='planets'></div>
+      {{/each}}
+      <a href="card/{{_id}}">hola</a>
+    </div>
+  {{!-- <img class="card-img-top" src="{{imgPath}}" alt="Card image cap"> --}}
+  <div class="card-body">
+    <p class="card-text">{{text}}</p>
   </div>
 </div>
+</div>
+
+<style>
+  .background-elements{
+    background-image: url("${{imgPath}}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 500px;
+  }
+
+  .planets {
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.9)
+  }
+
+  #picBg {
+    
+    
+    padding: 200px;
+  }
+
+  #card{
+    position: relative;
+  }
+</style>
