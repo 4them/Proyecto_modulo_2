@@ -5,16 +5,18 @@ const Elements = require('../models/elements.model')
 const User = require('../models/user.model')
 const Comment = require('../models/comments.model')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const mailer = require('../configs/nodemailer.config')
+
 
 const Element = require('../models/elements.model')
 
-router.get("/new-card", ensureLoggedIn('/auth/login') ,(req, res, next) => {
+router.get("/new-card", ensureLoggedIn('/auth/login'), (req, res, next) => {
   res.render("cards/new-card")
 })
 
 router.post('/api/new-card', (req, res, next) => {
   let listIdElem = []
- 
+
   Element.insertMany(req.body.elements)
     .then(allElements => allElements.forEach(elem => listIdElem.push(elem._id)))
     .then(x => Card.create({
@@ -31,11 +33,28 @@ router.post('/api/new-card', (req, res, next) => {
         }
       }
       User.findByIdAndUpdate(req.user._id, userProperty)
-        .then(x => console.log(x))
+        .then(x => x)
         .catch(err => console.error('Error al meter mas card ids al usuario', err))
     })
     .catch(err => console.error('Algo ha petado', err))
 })
+
+
+router.post('/send/:id', (req, res, next) => {
+  console.log("llego")
+  mailer.sendMail({
+    from: '"Ironhacker Email 👻" <myawesome@project.com>',
+    to: req.body.friendEmail,
+    subject: `${req.user.username} is sending you a new universe specially for you `,
+    text: `${req.body.message}, to check you personaul universe check out this link http://http://localhost:3000/card/${req.params.id}`,
+    html: `<b>${req.body.message}, to check you personaul universe check out this link http://http://localhost:3000/card/${req.params.id}</b>`
+  })
+  res.redirect(`/card/${req.params.id}`)
+
+})
+
+
+
 
 router.get("/:id", (req, res, next) => {
 
@@ -53,14 +72,10 @@ router.get("/:id", (req, res, next) => {
     .then(picFound => {
       res.render("cards/detail-card", picFound)
     })
-
 })
 
 
 router.post("/:id", (req, res, next) => {
-
-  console.log(req.body)
-  console.log(req.params.id)
 
   const comment = {
     cardID: req.params.id,
@@ -76,7 +91,7 @@ router.post("/:id", (req, res, next) => {
         }
       }
       Card.findByIdAndUpdate(req.params.id, commentIdToInsert)
-        .then(x => console.log(x))
+        .then(x => x)
         .catch(err => console.error('Error al meter mas comments el en el card', err))
     })
 
@@ -119,6 +134,51 @@ router.post("/delete/:id" , (req, res , next) => {
   .catch(err => console.log("Error borrando la card en la BBDD: ", err))
 
 })
+
+
+
+//send and create
+
+router.post('/api/send/new-card', (req, res, next) => {
+  let listIdElem = []
+
+  Element.insertMany(req.body.elements)
+    .then(allElements => allElements.forEach(elem => listIdElem.push(elem._id)))
+    .then(x => Card.create({
+      userId: req.user._id,
+      text: req.body.card.text,
+      imgPath: req.body.card.imagePath,
+      nasaDes: req.body.card.nasaDes,
+      elements: listIdElem
+    }))
+    .then(cardId => {
+      const userProperty = {
+        $push: {
+          property: cardId._id
+        }
+      }
+
+      // send email
+
+      mailer.sendMail({
+        from: '"Ironhacker Email 👻" <myawesome@project.com>',
+        to: req.body.friendEmail,
+        subject: `${req.user.username} is sending you a new universe specially for you `,
+        text: `${req.body.card.text}, to check you personaul universe check out this link http://http://localhost:3000/card/${cardId._id}`,
+        html: `<b>${req.body.card.text}, to check you personaul universe check out this link http://http://localhost:3000/card/${cardId._id}</b>`
+      })
+      console.log(`este es el correo de tu amigo ${req.body.friendEmail}, este es tu usuario ${req.user.username}, este es el texto de la carta ${req.body.card.text}, y este es el link http://http://localhost:3000/card/${cardId._id}`)
+
+      User.findByIdAndUpdate(req.user._id, userProperty)
+        .then(x => x)
+        .catch(err => console.error('Error al meter mas card ids al usuario', err))
+    })
+    .then(whatisthis => whatisthis)
+
+
+    .catch(err => console.error('Algo ha petado', err))
+})
+
 
 
 
