@@ -12,6 +12,7 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
 
   // const profilesToShow = []
 
+<<<<<<< HEAD
   // User.find()
   //   .then(allProfiles => {
 
@@ -30,12 +31,25 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
 
 
   User.findById(req.user._id)
+=======
+  User.find()
+    .then(allProfiles => {
+      for (let i = 0; i < 5; i++) {profilesToShow.push(allProfiles[Math.round(Math.random() * allProfiles.length)])}
+      User.findById(req.user._id)
+      .populate({
+        path: 'property',
+        populate: {
+          path: 'elements'
+        }
+      })
+>>>>>>> 8c181a1de3832950a647c9f26503175083ab2a48
     .populate({
-      path: 'property',
+      path: 'favorites',
       populate: {
         path: 'elements'
       }
     })
+<<<<<<< HEAD
     .populate({
       path: 'favorites',
       populate: {
@@ -49,8 +63,14 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
     })
     .catch(err => console.log('Tienes un error al mostras las cartas en el perfil', err))
 
+=======
+    .then(propertyCards =>{
+      res.render('auth/profile', {user: req.user,cards: propertyCards.property,cardsFav: propertyCards.favorites,suggestions: profilesToShow})
+    })
+    .catch(err => console.log('Tienes un error al mostras las cartas en el perfil',err))
+    })
+>>>>>>> 8c181a1de3832950a647c9f26503175083ab2a48
 })
-
 router.get('/edit', (req, res) => {
 
   const userId = req.user.id
@@ -67,7 +87,37 @@ router.post('/edit/:id', uploadCloud.single('picture'), (req, res) => {
   const { username, email } = req.body
 
   User.findByIdAndUpdate(userId, { username, email, picture })
-    .then(x => res.redirect('/profile'))//`/celebrities/details/${celebrityId}`))
+    .then(x => res.redirect('/profile'))
     .catch(err => console.log(err))
+})
+
+router.get('/:id', ensureLoggedIn('/auth/login'), (req, res) => {
+  const userId = req.params.id
+  const profilesToShow = []
+  let userVisit = {}
+
+  User.find()
+    .then(allProfiles => {
+      for (let i = 0; i < 5; i++) {profilesToShow.push(allProfiles[Math.round(Math.random() * allProfiles.length)])}
+      User.findById(userId)
+      .then(user => userVisit = user)
+        User.findById(userId)
+        .populate({
+          path: 'property',
+          populate: {
+            path: 'elements'
+          }
+        })
+      .populate({
+        path: 'favorites',
+        populate: {
+          path: 'elements'
+        }
+      })
+      .then(propertyCards =>{
+        res.render('auth/profile', {user: userVisit,cards: propertyCards.property,cardsFav: propertyCards.favorites,suggestions: profilesToShow})
+      })
+      .catch(err => console.log('Tienes un error al mostras las cartas en el perfil',err))
+      })
 })
 module.exports = router

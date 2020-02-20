@@ -7,7 +7,6 @@ const Comment = require('../models/comments.model')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const mailer = require('../configs/nodemailer.config')
 
-
 const Element = require('../models/elements.model')
 
 router.get("/new-card", ensureLoggedIn('/auth/login'), (req, res, next) => {
@@ -39,7 +38,6 @@ router.post('/api/new-card', (req, res, next) => {
     .catch(err => console.error('Algo ha petado', err))
 })
 
-
 router.post('/send/:id', (req, res, next) => {
   mailer.sendMail({
     from: '"Ironhacker Email 👻" <myawesome@project.com>',
@@ -52,11 +50,17 @@ router.post('/send/:id', (req, res, next) => {
 
 })
 
+router.get("/:id",(req, res, next) => {
 
+  let checkUser = false
 
-
-router.get("/:id", (req, res, next) => {
-
+  req.user.property.forEach(elm =>  {
+    if ( elm.toString() === req.params.id){
+      checkUser = true
+    }else{
+      checkUser = false
+    }
+  })
   const picId = req.params.id
 
   Card.findById(picId)
@@ -69,10 +73,9 @@ router.get("/:id", (req, res, next) => {
       }
     })
     .then(picFound => {
-      res.render("cards/detail-card", picFound)
+      res.render("cards/detail-card", {picFound,checkUser})
     })
 })
-
 
 router.post("/:id", (req, res, next) => {
 
@@ -98,6 +101,7 @@ router.post("/:id", (req, res, next) => {
 
 })
 
+<<<<<<< HEAD
 router.post("/fav/:id", (req, res, next) => {
 
   if (req.user.favorites.includes(req.params.id)) {
@@ -107,36 +111,57 @@ router.post("/fav/:id", (req, res, next) => {
     res.redirect(`/card/${req.params.id}`)
     return
   }
+=======
+router.post("/fav/:id" , (req, res, next) =>{
+  
+  let userFav = {}
+>>>>>>> 8c181a1de3832950a647c9f26503175083ab2a48
   const cardID = req.params.id
-  const userFav = {
-    $push: {
-      favorites: cardID
+  if (req.user.favorites.includes(req.params.id)){
+    userFav = {
+      $pull: {
+        favorites: cardID
+      }
+    }
+  }else{
+    userFav = {
+      $push: {
+        favorites: cardID
+      }
     }
   }
+<<<<<<< HEAD
   User.findByIdAndUpdate(req.user._id, userFav)
     .then(x => x)
     .catch(err => console.error('Error al meter los favs', err))
 
+=======
+  User.findByIdAndUpdate(req.user._id , userFav)
+  .then(x => console.log(x))
+  .catch(err => console.error('Error al meter los favs', err))
+>>>>>>> 8c181a1de3832950a647c9f26503175083ab2a48
   res.redirect(`/card/${req.params.id}`)
+
 })
 
 router.post("/delete/:id", (req, res, next) => {
 
+<<<<<<< HEAD
   if (req.user.property.includes(req.params.id)) {
     res.redirect(`/card/${req.params.id}`)
     return
   }
+=======
+>>>>>>> 8c181a1de3832950a647c9f26503175083ab2a48
   const cardID = req.params.id
+
   Card.findByIdAndDelete(cardID)
     .then(() => res.redirect('/profile'))
     .catch(err => console.log("Error borrando la card en la BBDD: ", err))
 
 })
 
-
-
 //send and create
-
 router.post('/api/send/new-card', (req, res, next) => {
   let listIdElem = []
 
