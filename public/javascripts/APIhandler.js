@@ -2,7 +2,7 @@
 // const axios = require("axios")
 
 // const galaxyGalery = "Galaxy%20Evolution%20Explorer%20GALEX&page=1&media=image&yearStart=1998&yearEnd=2020"
-const galaxyGalery = "Galaxy Evolution Explorer GALEX"
+const galaxyGalery = "Spitzer Space Telescope"
 const nasa_id = "PIA04279"
 
 class APIHandler {
@@ -17,25 +17,16 @@ class APIHandler {
 
   getBackgroundPic() {
     return this.axiosApp.get(`/search?q=${galaxyGalery}`)
-    // .then(searchResult => {
-    //   return searchResult
-    //   // const resultArr = searchResult.data.collection.items
 
-    //   // const imageUrl = resultArr[15].links[0].href  // links to thumbprints
-
-    //   // return imageUrl.replace("~thumb", "~medium") //change thumb for medium for large image
-
-    // })
-    // .catch(err => console.log("error al mostrar los resultados de la busqueda", err))
   }
 
-  getBackgroundDescription() {
+  getBackgroundDescription(n) {
     return this.axiosApp.get(`/search?q=${galaxyGalery}`)
       .then(searchResult => {
 
         const resultArr = searchResult.data.collection.items
 
-        const nasaDes = resultArr[15].data[0].description
+        const nasaDes = resultArr[n].data[0].description
 
         return nasaDes
 
@@ -43,7 +34,7 @@ class APIHandler {
       .catch(err => console.log("error al al buscar la description", err))
   }
 
-  getPlanet() {
+  getPlanet(n) {
 
     const planetTextures = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx78uyNwdPuMYzgM58WlpPi4KT5spJVa0j86vYoKzFhE1py5K6cQ&s",
@@ -93,17 +84,17 @@ class APIHandler {
 
           path: planetTextures[Math.round(Math.random() * planetTextures.length)],
 
-          wikiname: exoplanets.data[10].pl_name,
+          wikiname: exoplanets.data[n].pl_name,
 
-          height: Math.round(exoplanets.data[10].pl_radj * 69.9) * 2,
+          height: Math.round(exoplanets.data[n].pl_radj * 69.9),
 
-          width: Math.round(exoplanets.data[10].pl_radj * 69.9) * 2,
+          width: Math.round(exoplanets.data[n].pl_radj * 69.9),
 
-          nasaDes: `the planet ${exoplanets.data[10].pl_name} is part of of the solar system of the star ${exoplanets.data[10].pl_hostname}. It's radius is of ${exoplanets.data[10].pl_radj.toFixed(2)} time the one of Jupiter for  total diameter of ${Math.round(exoplanets.data[10].pl_radj * 69.9 * 2)} Km.`,
+          nasaDes: `the planet ${exoplanets.data[n].pl_name} is part of of the solar system of the star ${exoplanets.data[10].pl_hostname}. It's radius is of ${exoplanets.data[10].pl_radj.toFixed(2)} time the one of Jupiter for  total diameter of ${Math.round(exoplanets.data[10].pl_radj * 69.9 * 2)} Km.`,
 
-          posx: Math.random(),
+          posx: Math.random() * 100,
 
-          posy: Math.random(),
+          posy: Math.random() * 100,
 
         }
 

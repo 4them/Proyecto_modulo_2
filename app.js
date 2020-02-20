@@ -13,6 +13,10 @@ require('./configs/middleware.config')(app)
 require('./configs/views.config')(app)
 require('./configs/authentication.cofing')(app)
 require('./configs/hbs.config')
+require('./configs/nodemailer.config')
+
+
+
 
 // default value for title local
 app.locals.title = '4THEM'
@@ -29,6 +33,7 @@ app.use('/auth', require('./routes/auth.routes'))
 app.use('/card', require('./routes/card.routes'))
 app.use('/profile', require('./routes/profile.routes'))
 app.use('/test', require('./routes/testRoutes'))
+
 
 
 module.exports = app

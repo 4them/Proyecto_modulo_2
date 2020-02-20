@@ -2,6 +2,10 @@
 
 <button id="saveCard">Save your card</button>
 
+<input id="friendEmail" type="text" name="friendEmail">
+<button id="sendCard">Send to a friend</button>
+
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10">
@@ -14,11 +18,12 @@
 </div>
 
 
+
 <style>
   #card {
     margin-top: 50px;
     background-color: aqua;
-    width: 100%;
+    width: 400px;
     height: 400px;
     position: relative;
   }
@@ -34,10 +39,11 @@
   }
 
   .planets {
-
+    height: 100%;
+    object-fit: cover;
     border-radius: 50%;
     position: absolute;
-    box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.9)
+    box-shadow: inset 0px 0px 8px 5px rgba(0, 0, 0, 0.9)
   }
 
   #message {

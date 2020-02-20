@@ -16,39 +16,36 @@ document.onkeyup = e => {
 
     cardConstructor = document.querySelector("#cardConstructor").value
 
-    // const cardConstructorLength = cardConstructor.split(" ").length
+    function constructorNumber(constructor) {
 
-    // let letterArray = cardConstructor.split(" ")[cardConstructorLength - 2].split("")
+      const cardConstructorLength = constructor.split(" ").length
+      let letterArray = cardConstructor.split(" ")[cardConstructorLength - 2].split("")
+      return letterArray.reduce((acc, elm) => acc + elm.charCodeAt(0) - 97, 0)
 
-    // letterArray = letterArray.reduce((acc, elm) => acc + elm.charCodeAt(0), 0)
+    }
 
-    // console.log(letterArray)
-
-
-
+    const numberLookUp = constructorNumber(cardConstructor)
 
 
     if (cardConstructor.split(" ").length <= 2) {
       nasaAPIHandler.getBackgroundPic()
         .then(searchResult => {
           const resultArr = searchResult.data.collection.items
-          const imageUrl = resultArr[10].links[0].href  // links to thumbprints
-          picBg.src = imageUrl.replace("~thumb", "~medium") //change thumb for medium for large image
-
-          // cardFigure.style = `background-image: ${imageUrl.replace("~thumb", "~medium")}`
+          const imageUrl = resultArr[numberLookUp].links[0].href  // links to thumbprints
+          picBg.src = imageUrl //change thumb for medium for large image
 
           //update card object
-          card.imagePath = imageUrl.replace("~thumb", "~medium")
+          card.imagePath = imageUrl
 
         })
 
-      nasaAPIHandler.getBackgroundDescription()
+      nasaAPIHandler.getBackgroundDescription(numberLookUp)
         .then(description => card.nasaDes = description)
 
     } else {
-      nasaAPIHandler.getPlanet()
+      nasaAPIHandler.getPlanet(numberLookUp)
         .then(result => {
-          document.querySelector("#card").innerHTML += `<div  style= 'background: url("${result.path}")center no-repeat; top:${result.posy * 100}%;left:${result.posx * 100}%; height:${result.height / 2}%; width:${result.width / 3.5}%' class='planets' </div>`
+          document.querySelector("#card").innerHTML += `<div  style= 'background: url("${result.path}")center no-repeat; top:${result.posy}%;left:${result.posx}%; height:${result.height}%; width:${result.width}%' class='planets' </div>`
 
           //push element to the elemtn list
           elements.push(result)
@@ -67,6 +64,16 @@ document.querySelector("#saveCard").onclick = () => {
 
 }
 
+document.querySelector("#sendCard").onclick = () => {
+  //cambiar que se pinte en el txt
+  let textCard = document.querySelector("#cardConstructor").value
+  card.text = textCard
+  let friendEmail = document.querySelector("#friendEmail").value
+  axiosApp.post(`/api/send/new-card`, { card, elements, friendEmail })
+    .then(sent => console.log("this is sent", sent))
+    .catch(err => console.log("error al enviar el post ", err))
+
+}
 
 
 
