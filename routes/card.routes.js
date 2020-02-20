@@ -50,14 +50,14 @@ router.post('/send/:id', (req, res, next) => {
 
 })
 
-router.get("/:id",(req, res, next) => {
+router.get("/:id", (req, res, next) => {
 
   let checkUser = false
 
-  req.user.property.forEach(elm =>  {
-    if ( elm.toString() === req.params.id){
+  req.user.property.forEach(elm => {
+    if (elm.toString() === req.params.id) {
       checkUser = true
-    }else{
+    } else {
       checkUser = false
     }
   })
@@ -73,7 +73,7 @@ router.get("/:id",(req, res, next) => {
       }
     })
     .then(picFound => {
-      res.render("cards/detail-card", {picFound,checkUser})
+      res.render("cards/detail-card", { picFound, checkUser })
     })
 })
 
@@ -101,58 +101,32 @@ router.post("/:id", (req, res, next) => {
 
 })
 
-<<<<<<< HEAD
 router.post("/fav/:id", (req, res, next) => {
 
-  if (req.user.favorites.includes(req.params.id)) {
-    // User.findByIdAndRemove(req.user._id , {favorites:req.params.id})
-    // .then(x => console.log(x))
-    // .catch(err => console.error('Error al borrar el fav', err))
-    res.redirect(`/card/${req.params.id}`)
-    return
-  }
-=======
-router.post("/fav/:id" , (req, res, next) =>{
-  
   let userFav = {}
->>>>>>> 8c181a1de3832950a647c9f26503175083ab2a48
   const cardID = req.params.id
-  if (req.user.favorites.includes(req.params.id)){
+  if (req.user.favorites.includes(req.params.id)) {
     userFav = {
       $pull: {
         favorites: cardID
       }
     }
-  }else{
+  } else {
     userFav = {
       $push: {
         favorites: cardID
       }
     }
   }
-<<<<<<< HEAD
   User.findByIdAndUpdate(req.user._id, userFav)
-    .then(x => x)
+    .then(x => console.log(x))
     .catch(err => console.error('Error al meter los favs', err))
-
-=======
-  User.findByIdAndUpdate(req.user._id , userFav)
-  .then(x => console.log(x))
-  .catch(err => console.error('Error al meter los favs', err))
->>>>>>> 8c181a1de3832950a647c9f26503175083ab2a48
   res.redirect(`/card/${req.params.id}`)
 
 })
 
 router.post("/delete/:id", (req, res, next) => {
 
-<<<<<<< HEAD
-  if (req.user.property.includes(req.params.id)) {
-    res.redirect(`/card/${req.params.id}`)
-    return
-  }
-=======
->>>>>>> 8c181a1de3832950a647c9f26503175083ab2a48
   const cardID = req.params.id
 
   Card.findByIdAndDelete(cardID)
