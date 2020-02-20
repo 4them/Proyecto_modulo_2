@@ -44,5 +44,5 @@ const cards = [{
 
 
 Card.insertMany(cards)
-  .then(loadedCards=> console.log(loadedCards))
+  .then(x => x)
   .catch(err => console.log("Error al subir los celebrities tipo", err))

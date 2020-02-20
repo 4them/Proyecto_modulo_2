@@ -1,8 +1,79 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font-size: 14px;
+  font-family: 'Source Sans Pro', sans-serif; }
 
 a {
   color: #00B7FF; }
+
+.card-view {
+  display: flex;
+  height: 700px; }
+
+#card {
+  width: 700px;
+  height: 700px;
+  position: relative; }
+
+.card-supplement {
+  background-color: #e4e3e3;
+  text-align: center; }
+
+#cardConstructor {
+  text-align: center;
+  background-color: #d3ccc0;
+  text-justify: center;
+  background: none;
+  width: 100%;
+  height: 80%;
+  border: none; }
+
+#saveCard {
+  width: 40px;
+  height: 40px; }
+
+#friendEmail {
+  background-color: #f8f8f4;
+  border-style: solid;
+  margin: auto;
+  border: none;
+  padding: 10px 5px;
+  width: 60%; }
+
+#sendCard {
+  margin-top: 0px;
+  background-image: url("https://cdn2.iconfinder.com/data/icons/mini-icon-set-communication/91/Communication_10-512.png");
+  background-size: cover;
+  background-position: center;
+  padding: 18px 18px;
+  background-color: #fafafa;
+  border-style: solid;
+  width: 20%;
+  border-radius: 10%; }
+
+#saveCard {
+  display: block;
+  width: 80%;
+  background-color: #fafafa;
+  border-style: solid;
+  border-radius: 10%;
+  margin: auto; }
+
+.planets {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: inset 0px 0px 8px 5px rgba(0, 0, 0, 0.9);
+  background-size: cover; }
+
+#message {
+  position: absolute; }
+
+#picBg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover; }
 
 /*# sourceMappingURL=style.css.map */

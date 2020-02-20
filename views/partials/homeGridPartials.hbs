@@ -1,10 +1,34 @@
 <div class="col-md-4">
-  <div class="card">
-    <a href="card/{{_id}}"><img class="card-img-top" src="{{imgPath}}" alt="#"></a>
+
+  <div class="card" style="width: 18rem;">
+    <div class="background-image" style='background: url("{{imgPath}}")center no-repeat; height: 300px; width: 300px;'>
+      {{#each elements}}
+      <div
+        style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
+        class='planets'></div>
+      {{/each}}
+    </div>
     <div class="card-body">
       <h6 class="card-title">{{userID.username}}</h6>
-      <p class="card-text">{{text}}
-      </p>
+      <p class="card-text">{{text}}</p>
     </div>
   </div>
 </div>
+
+<style>
+  .planets {
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.9)
+  }
+
+  #picBg {
+
+
+    padding: 200px;
+  }
+
+  .background-image {
+    position: relative;
+  }
+</style>

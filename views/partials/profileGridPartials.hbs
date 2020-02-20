@@ -1,40 +1,20 @@
 <div class="col-md-4">
-  {{!-- <div class="card">
-    <figure id='card'>
-      <a href="card/{{_id}}"><img  src="{{imgPath}}" alt="#" id="picBg"></a>
-      {{#each elements}}
-        <div  style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;' class='planets'></div>
-      {{/each}}
-    </figure>
-    <div class="card-body">
-      <p class="card-text">{{text}}
-      </p>
-    </div>
-  </div> --}}
 
   <div class="card" style="width: 18rem;">
-    <div style='background: url("{{imgPath}}")center no-repeat; height: 300px; width: 300px;'>
+    <div class="background-image" style='background: url("{{imgPath}}")center no-repeat; height: 300px; width: 300px;'>
       {{#each elements}}
-        <div  style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;' class='planets'></div>
+      <div
+        style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
+        class='planets'></div>
       {{/each}}
-      <a href="card/{{_id}}">hola</a>
     </div>
-  {{!-- <img class="card-img-top" src="{{imgPath}}" alt="Card image cap"> --}}
-  <div class="card-body">
-    <p class="card-text">{{text}}</p>
+    <div class="card-body">
+      <p class="card-text">{{text}}</p>
+    </div>
   </div>
-</div>
 </div>
 
 <style>
-  .background-elements{
-    background-image: url("${{imgPath}}");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100px;
-    width: 500px;
-  }
-
   .planets {
     border-radius: 50%;
     position: absolute;
@@ -42,12 +22,12 @@
   }
 
   #picBg {
-    
-    
+
+
     padding: 200px;
   }
 
-  #card{
+  .background-image {
     position: relative;
   }
 </style>

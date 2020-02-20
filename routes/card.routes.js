@@ -20,7 +20,7 @@ router.post('/api/new-card', (req, res, next) => {
   Element.insertMany(req.body.elements)
     .then(allElements => allElements.forEach(elem => listIdElem.push(elem._id)))
     .then(x => Card.create({
-      userId: req.user._id,
+      userID: req.user._id,
       text: req.body.card.text,
       imgPath: req.body.card.imagePath,
       nasaDes: req.body.card.nasaDes,
@@ -41,7 +41,6 @@ router.post('/api/new-card', (req, res, next) => {
 
 
 router.post('/send/:id', (req, res, next) => {
-  console.log("llego")
   mailer.sendMail({
     from: '"Ironhacker Email 👻" <myawesome@project.com>',
     to: req.body.friendEmail,
@@ -99,9 +98,9 @@ router.post("/:id", (req, res, next) => {
 
 })
 
-router.post("/fav/:id" , (req, res, next) =>{
+router.post("/fav/:id", (req, res, next) => {
 
-  if (req.user.favorites.includes(req.params.id)){
+  if (req.user.favorites.includes(req.params.id)) {
     // User.findByIdAndRemove(req.user._id , {favorites:req.params.id})
     // .then(x => console.log(x))
     // .catch(err => console.error('Error al borrar el fav', err))
@@ -114,24 +113,23 @@ router.post("/fav/:id" , (req, res, next) =>{
       favorites: cardID
     }
   }
-  User.findByIdAndUpdate(req.user._id , userFav)
-  .then(x => console.log(x))
-  .catch(err => console.error('Error al meter los favs', err))
+  User.findByIdAndUpdate(req.user._id, userFav)
+    .then(x => x)
+    .catch(err => console.error('Error al meter los favs', err))
 
   res.redirect(`/card/${req.params.id}`)
 })
 
-router.post("/delete/:id" , (req, res , next) => {
+router.post("/delete/:id", (req, res, next) => {
 
-  if (req.user.property.includes(req.params.id)){
-    console.log('Holaaaa')
+  if (req.user.property.includes(req.params.id)) {
     res.redirect(`/card/${req.params.id}`)
     return
   }
   const cardID = req.params.id
   Card.findByIdAndDelete(cardID)
-  .then(() => res.redirect('/profile'))
-  .catch(err => console.log("Error borrando la card en la BBDD: ", err))
+    .then(() => res.redirect('/profile'))
+    .catch(err => console.log("Error borrando la card en la BBDD: ", err))
 
 })
 

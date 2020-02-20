@@ -51,15 +51,21 @@ document.onkeyup = e => {
           elements.push(result)
         })
     }
+
   }
 }
+
+
+
+
+
 
 document.querySelector("#saveCard").onclick = () => {
   //cambiar que se pinte en el txt
   let textCard = document.querySelector("#cardConstructor").value
   card.text = textCard
   axiosApp.post(`/api/new-card`, { card, elements })
-    .then(sent => console.log(sent))
+    .then(sent => sent)
     .catch(err => console.log("error al enviar el post ", err))
 
 }
@@ -70,7 +76,7 @@ document.querySelector("#sendCard").onclick = () => {
   card.text = textCard
   let friendEmail = document.querySelector("#friendEmail").value
   axiosApp.post(`/api/send/new-card`, { card, elements, friendEmail })
-    .then(sent => console.log("this is sent", sent))
+    .then(sent => sent)
     .catch(err => console.log("error al enviar el post ", err))
 
 }

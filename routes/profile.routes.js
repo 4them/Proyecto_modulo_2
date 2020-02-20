@@ -19,7 +19,7 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
   //       profilesToShow.push(allProfiles[Math.round(Math.random() * allProfiles.length)])
   //     }
 
-  //     console.log(profilesToShow)
+  //     // console.log(profilesToShow)
 
   //     res.render('auth/profile', {
   //       user: req.user,
@@ -27,6 +27,8 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
   //     })
 
   //   })
+
+
   User.findById(req.user._id)
     .populate({
       path: 'property',
@@ -42,8 +44,8 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
     })
 
     .then(propertyCards => {
-      console.log(propertyCards) //[0].elements .imgPath
       res.render('auth/profile', { user: req.user, cards: propertyCards.property, cardsFav: propertyCards.favorites })
+
     })
     .catch(err => console.log('Tienes un error al mostras las cartas en el perfil', err))
 

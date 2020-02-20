@@ -24,7 +24,6 @@ app.locals.title = '4THEM'
 //register partials
 const path = require('path')
 const hbs = require('hbs')
-console.log(__dirname)
 hbs.registerPartials(path.join(__dirname, 'views', 'partials'))
 
 // Base URLS
