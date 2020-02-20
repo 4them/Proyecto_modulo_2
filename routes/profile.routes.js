@@ -10,7 +10,7 @@ const uploadCloud = require('../configs/cloudinary.config')
 
 router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
 
-  // const profilesToShow = []
+  const profilesToShow = []
 
   User.find()
     .then(allProfiles => {
