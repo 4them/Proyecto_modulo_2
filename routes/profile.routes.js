@@ -10,23 +10,23 @@ const uploadCloud = require('../configs/cloudinary.config')
 
 router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
 
-  const profilesToShow = []
+  // const profilesToShow = []
 
-  User.find()
-    .then(allProfiles => {
+  // User.find()
+  //   .then(allProfiles => {
 
-      for (let i = 0; i < 5; i++) {
-        profilesToShow.push(allProfiles[Math.round(Math.random() * allProfiles.length)])
-      }
+  //     for (let i = 0; i < 5; i++) {
+  //       profilesToShow.push(allProfiles[Math.round(Math.random() * allProfiles.length)])
+  //     }
 
-      console.log(profilesToShow)
+  //     console.log(profilesToShow)
 
-      res.render('auth/profile', {
-        user: req.user,
-        suggestions: profilesToShow
-      })
+  //     res.render('auth/profile', {
+  //       user: req.user,
+  //       suggestions: profilesToShow
+  //     })
 
-    })
+  //   })
   User.findById(req.user._id)
     .populate({
       path: 'property',
@@ -34,18 +34,18 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
         path: 'elements'
       }
     })
-  .populate({
-    path: 'favorites',
-    populate: {
-      path: 'elements'
-    }
-  })
+    .populate({
+      path: 'favorites',
+      populate: {
+        path: 'elements'
+      }
+    })
 
-  .then(propertyCards =>{
-    console.log(propertyCards) //[0].elements .imgPath
-    res.render('auth/profile', {user: req.user,cards: propertyCards.property,cardsFav: propertyCards.favorites})
-  })
-  .catch(err => console.log('Tienes un error al mostras las cartas en el perfil',err))
+    .then(propertyCards => {
+      console.log(propertyCards) //[0].elements .imgPath
+      res.render('auth/profile', { user: req.user, cards: propertyCards.property, cardsFav: propertyCards.favorites })
+    })
+    .catch(err => console.log('Tienes un error al mostras las cartas en el perfil', err))
 
 })
 
