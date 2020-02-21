@@ -1,14 +1,26 @@
-<h1>Editar Famoso</h1>
+<div class="wrapper">
+    <h1>Edit your Profile</h1>
+    <div class="form-i input-singup">
+        <form action="/profile/edit/{{_id}}" method="post" enctype="multipart/form-data" id="form-container ">
+            
+            <input type="text" name="username" value="{{username}}"><br>
+            <br>
+            <input type="text" name="email" value="{{email}}"><br>
 
-<form action="/profile/edit/{{_id}}" method="post" enctype="multipart/form-data">
-    <label for="">Username:</label>
-    <input type="text" name="username" value="{{username}}"><br>
+            <br>
+            <div class="files">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="picture">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+            </div>
+            <br>
 
-    <label for="">Email:</label>
-    <input type="text" name="email" value="{{email}}"><br>
-
-    <label for="picture">Profile image</label>
-    <input type="file" name="picture">
-
-    <button type="submit">Editar</button>
-</form>
+            <button class="btn btn-info btn-lg btn-block" type="submit">Editar</button>
+        </form>
+    </div>
+</div>

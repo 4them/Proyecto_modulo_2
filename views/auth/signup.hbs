@@ -1,35 +1,43 @@
-<h2>Signup</h2>
 
-<form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="Nombre de usuario">
+    <div class="wrapper">
+          <h2>Signup</h2>
+        <div class="form-i input-singup">
+          <form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
+        <br>
+        <input id="username" type="text" name="username" placeholder="username">
+        <br><br>
+        <input type="text" name="email" placeholder="Email">
 
-  <br><br>
+        <br><br>
+        <input id="password" type="password" name="password" placeholder="password">
+        <br>
+        {{#if message }}
+          <div class="error-message">{{ message }}</div>
+        {{/if}}
 
-  <label for="email">Email</label>
-  <input type="text" name="email" placeholder="Introduce un email">
+        <br><br>
 
-  <br><br>
+        <div class="files">
+          <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="picture">
+              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+          </div>
+        <br><br>
 
-  <label for="password">Password:</label>
-  <input id="password" type="password" name="password" placeholder="Contrasenia">
-  <br>
-  {{#if message }}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
+        <button class="btn btn-info btn-lg btn-block">Create</button>
+        </div>
 
-  <br><br>
-
-  <label for="picture">Profile image</label>
-  <input type="file" name="picture">
-
-  <br><br>
-
-  <button>Create</button>
-
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/auth/login">Login</a>
-  </p>
-</form>
-
+        <p class="account-message">
+          Do you already have an account?
+        <a href="/auth/login">Login</a>
+      </p>
+        </div>
+      </div>
+    </form>
+    </div>
+  
