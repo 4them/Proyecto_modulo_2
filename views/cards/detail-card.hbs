@@ -1,71 +1,73 @@
-<h1>Detail</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-md-10">
-      <div class="card-details">
+<section class="card-view">
 
-        <figure>
-          <img src="{{picFound.imgPath}}" alt="card">
-        </figure>
 
-        <h4>{{picFound.userID.username}}</h4>
-        <h6>{{picFound.text}}</h6>
+  <div class="card-holder">
 
-        <form action="/card/fav/{{picFound._id}}" method="POST">
-          <button>Img fav</button>
-        </form>
-        <form action="/card/delete/{{picFound._id}}" method="POST">
-          {{#if checkUser}}
-            <button>Delete</button>
-          {{/if}}
-        </form>
+    <figure class="card">
+      <div class="background-image" style='background-image: url("{{picFound.imgPath}}")'>
+        {{#each picFound.elements}}
+        <div
+          style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
+          class='planets'></div>
+        {{/each}}
+    </figure>
+  </div>
+
+  <div class="card-supplement">
+
+    <article class="owner-header">
+      <h4>{{picFound.userID.username}}</h4>
+      <h6>{{picFound.text}}</h6>
+      <form action="/card/fav/{{picFound._id}}" method="POST">
+        <button class="normal-button like"></button>
+      </form>
+    </article>
+
+    <article>
+
+      <form action="/card/delete/{{picFound._id}}" method="POST">
+        {{#if checkUser}}
+        <button class="normal-button">Delete</button>
+        {{/if}}
+      </form>
+    </article>
+
+    <article>
+      <h3>Comments </h3>
+
+      <form action="/card/{{picFound._id}}" method="POST">
+        <input class="message-for-friend" class="comment" name="comment" type="text" placeholder="Add your comment">
+        <button class="normal-button submit">Submit</button>
+      </form>
+
+
+      <div class="comment-list">
+        {{#each picFound.comments}}
+
+        <div class="comment-container">
+          <h5>{{userID.username}}</h5>
+
+          <h6>{{commentText}}</h6>
+        </div>
+
+        {{/each}}
       </div>
-    </div>
-  </div>
+    </article>
 
-  <div class="row">
+    <article class="container-to-share">
 
-    <div class="col-md-10">
-
+      <h4>Share with a friend!</h4>
       <form action="send/{{_id}}" method="POST">
-        <input name="message" type="text" placeholder="Type a message to your friend!">
-        <input name="friendEmail" type="text" placeholder="type your friends email!">
-        <button>Send the card</button>
+        <input class="message-for-friend" name="message" type="text" placeholder="Type a message to your friend!">
+        <input class="email-to-share" name="friendEmail" type="text" placeholder="type your friends email!">
+        <button id="shareCard"></button>
       </form>
 
+    </article>
 
-    </div>
+    <p class="message-to-user"></p>
   </div>
-
-
-  <div class="row">
-
-    <div class="col-md-10">
-      <form action="/card/{{_id}}" method="POST">
-        <input class="comment" name="comment" type="text" placeholder="Add your comment">
-        <button>Submit</button>
-      </form>
-    </div>
-
-    <div class="col-md-6">
-      <h2>Comments </h2>
-    </div>
-
-
-
-
-    {{#each comments}}
-
-    <div class="col-md-10">
-      <h5>{{userID.username}}</h5>
-
-      <h6>{{commentText}}</h6>
-    </div>
-
-    {{/each}}
 
   </div>
 
-
-</div>
-</div>
+</section>

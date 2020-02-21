@@ -1,0 +1,75 @@
+<h1>Detail</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="card-details">
+        <figure>
+          <div class="background-image"
+            style='background: url("{{imgPath}}")center no-repeat; height: 300px; width: 300px;'>
+            {{#each elements}}
+            <div
+              style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
+              class='planets'></div>
+            {{/each}}
+        </figure>
+        <h4>{{picFound.userID.username}}</h4>
+        <h6>{{picFound.text}}</h6>
+
+        <form action="/card/fav/{{picFound._id}}" method="POST">
+          <button>Img fav</button>
+        </form>
+        <form action="/card/delete/{{picFound._id}}" method="POST">
+          {{#if checkUser}}
+          <button>Delete</button>
+          {{/if}}
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-10">
+
+      <form action="send/{{_id}}" method="POST">
+        <input name="message" type="text" placeholder="Type a message to your friend!">
+        <input name="friendEmail" type="text" placeholder="type your friends email!">
+        <button>Send the card</button>
+      </form>
+
+
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-10">
+      <form action="/card/{{_id}}" method="POST">
+        <input class="comment" name="comment" type="text" placeholder="Add your comment">
+        <button>Submit</button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <h2>Comments </h2>
+    </div>
+
+
+
+
+    {{#each comments}}
+
+    <div class="col-md-10">
+      <h5>{{userID.username}}</h5>
+
+      <h6>{{commentText}}</h6>
+    </div>
+
+    {{/each}}
+
+  </div>
+
+
+</div>
+</div>
