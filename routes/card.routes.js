@@ -45,11 +45,11 @@ router.post('/api/new-card', (req, res, next) => {
 
 router.post('/send/:id', (req, res, next) => {
   mailer.sendMail({
-    from: '"Ironhacker Email 👻" <myawesome@project.com>',
+    from: '"4them" <myawesome@project.com>',
     to: req.body.friendEmail,
     subject: `${req.user.username} is sending you a new universe specially for you `,
-    text: `${req.body.message}, to check you personaul universe check out this link http://http://localhost:3000/card/${req.params.id}`,
-    html: `<b>${req.body.message}, to check you personaul universe check out this link http://http://localhost:3000/card/${req.params.id}</b>`
+    text: `${req.body.message}, to check you personaul universe check out this link https://app-4them.herokuapp.com/card/${req.params.id}`,
+    html: `<b>${req.body.message}, to check you personaul universe check out this link https://app-4them.herokuapp.com/card/${req.params.id}</b>`
   })
     .then(mail => res.redirect(`/card/${req.params.id}`))
 
@@ -160,11 +160,11 @@ router.post('/api/send/new-card', (req, res, next) => {
 
       // send email
       mailer.sendMail({
-        from: '"Ironhacker Email 👻" <myawesome@project.com>',
+        from: '"4them" <myawesome@project.com>',
         to: req.body.friendEmail,
         subject: `${req.user.username} is sending you a new universe specially for you `,
-        text: `${req.body.card.text}, to check you personaul universe check out this link http://http://localhost:3000/card/${cardId._id}`,
-        html: `<b>${req.body.card.text}, to check you personaul universe check out this link http://http://localhost:3000/card/${cardId._id}</b>`
+        text: `${req.body.card.text}, to check you personaul universe check out this link https://app-4them.herokuapp.com/card/${cardId._id}`,
+        html: `<b>${req.body.card.text}, to check you personaul universe check out this link https://app-4them.herokuapp.com/card/${cardId._id}</b>`
       })
 
       User.findByIdAndUpdate(req.user._id, userProperty)

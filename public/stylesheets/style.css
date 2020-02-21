@@ -36,7 +36,8 @@ a {
 
 #saveCard {
   width: 40px;
-  height: 40px; }
+  height: 40px;
+  margin-top: 5px; }
 
 #friendEmail {
   background-color: #f8f8f4;
@@ -73,6 +74,11 @@ a {
   position: absolute;
   box-shadow: inset 0px 0px 8px 5px rgba(0, 0, 0, 0.9);
   background-size: cover; }
+
+.planets:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  border-width: 1px;
+  border-style: solid; }
 
 #message {
   position: absolute; }
@@ -144,6 +150,11 @@ form {
   background-repeat: no-repeat;
   background-position: center; }
 
+.background-image:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  border-width: 1px;
+  border-style: solid; }
+
 #shareCard {
   margin-top: 0px;
   background-size: 60%;
@@ -167,13 +178,13 @@ form {
     margin-bottom: 20px; }
 
 .comment-list {
-  height: 40vh;
+  height: 30vh;
   overflow: hidden;
   overflow-y: scroll;
   background-color: #fffdf9;
   margin: 0px, 20px;
   width: 90%;
-  margin: auto;
+  margin: 20px auto;
   border-radius: 2%; }
 
 .comment-container {
@@ -196,6 +207,7 @@ form {
   margin: auto;
   border: none;
   padding: 30px 5px;
+  margin-bottom: 10px;
   width: 80%;
   border-radius: 5%; }
 
@@ -212,7 +224,10 @@ form {
 
 .normal-button.like {
   background-image: url("https://cdn.iconscout.com/icon/premium/png-256-thumb/pixel-heart-554373.png");
-  background-size: 40%; }
+  background-size: 40%;
+  display: block;
+  margin-left: 10%;
+  z-index: 10; }
 
 .normal-button.submit {
   border-width: 0.5px;
@@ -232,6 +247,7 @@ form {
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 120px;
   height: 90vh; }
 
@@ -262,5 +278,53 @@ form {
 
 .suggestion-a {
   display: block; }
+
+.element-info {
+  display: flex;
+  align-items: center;
+  height: 90vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-right: 1px solid #929292;
+  z-index: 100;
+  color: #fffdf9;
+  text-align: center;
+  text-align: center;
+  text-justify: auto;
+  transition: .5s; }
+
+.element-info-text {
+  line-height: 2rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #e9e9e9; }
+
+.element-info.hide {
+  transition: 0.5s ease;
+  display: none;
+  padding: 0; }
+
+.element-info.show {
+  transition: 0.5s ease;
+  display: flex;
+  width: 30vh;
+  padding: 25px; }
+
+.home-card-wrapper {
+  margin: 20px 15px;
+  width: 100%; }
+
+.card-body > a > h6 {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 1.2rem; }
+
+.comment-header {
+  width: 100%;
+  text-align: rigth; }
+
+.comments-article {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

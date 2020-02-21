@@ -90,7 +90,7 @@ class APIHandler {
 
           width: Math.round(exoplanets.data[n].pl_radj * 69.9 * 0.7),
 
-          nasaDes: `the planet ${exoplanets.data[n].pl_name} is part of of the solar system of the star ${exoplanets.data[10].pl_hostname}. It's radius is of ${exoplanets.data[10].pl_radj.toFixed(2)} time the one of Jupiter for  total diameter of ${Math.round(exoplanets.data[10].pl_radj * 69.9 * 2)} Km.`,
+          nasaDes: `the planet ${exoplanets.data[n].pl_name} is part of of the solar system of the star ${exoplanets.data[n].pl_hostname}. It's radius is of ${exoplanets.data[n].pl_radj.toFixed(2)} time the one of Jupiter for  total diameter of ${Math.round(exoplanets.data[n].pl_radj * 69.9 * 2)} Km.`,
 
           posx: Math.random() * 70 + 15,
 
@@ -103,29 +103,4 @@ class APIHandler {
 
   }
 
-  //   class stickerAPIHandler {
-  //   constructor() {
-  //     this.BASE_URL = "https://api.mojilala.com/v1/stickers";
-  //     this.axiosApp = axios.create({ baseURL: this.BASE_URL })
-  //   }
-
-  //   getSticker() {
-  //     return this.axiosApp.get(`/search?q=space&api_key=dc6zaTOxFJmzC`)
-  //       .then(searchResult => {
-
-  //         const resultArr = searchResult.data.collection.items
-
-  //         const nasaDes = resultArr[n].data[0].description
-
-  //         return nasaDes
-
-  //       })
-  //       .catch(err => console.log("error al al buscar la description", err))
-  //   }
-
-
-
-
-
-  // }
 }

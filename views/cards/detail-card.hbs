@@ -3,13 +3,19 @@
 
   <div class="card-holder">
 
+    <div class="element-info hide">
+      <p class="element-info-text"></p>
+    </div>
+
     <figure class="card">
-      <div class="background-image" style='background-image: url("{{picFound.imgPath}}")'>
-        {{#each picFound.elements}}
-        <div
-          style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
-          class='planets'></div>
-        {{/each}}
+      <div class="background-image" id="{{picFound.nasaDes}}" value="{{picFound.nasaDes}}"
+        style='background-image: url("{{picFound.imgPath}}")'></div>
+      {{#each picFound.elements}}
+      <div
+        style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
+        class='planets' id="{{nasaDes}}"></div>
+
+      {{/each}}
     </figure>
   </div>
 
@@ -32,8 +38,8 @@
       </form>
     </article>
 
-    <article>
-      <h3>Comments </h3>
+    <article class="comments-article">
+      <h3 class="comment-header">Comments</h3>
 
       <form action="/card/{{picFound._id}}" method="POST">
         <input class="message-for-friend" class="comment" name="comment" type="text" placeholder="Add your comment">
