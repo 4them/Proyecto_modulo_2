@@ -106,6 +106,7 @@ $buttom-color : rgb(248, 248, 244);
     object-fit: cover;
 
   }
+  //Login Singup y edit profile
   .wrapper {
     display: flex;
     align-items: center;
@@ -113,7 +114,7 @@ $buttom-color : rgb(248, 248, 244);
     justify-content: center;
     width: 100%;
     min-height: 100%;
-    padding: 150px;
+    padding: 120px;
   }
 
 input {
@@ -130,10 +131,6 @@ form{
   text-align: center;
   box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
 }
-// .files{
-//   margin: auto;
-//   width: 60%;
-// }
 
 .file-field.big .file-path-wrapper {
   height: 3.2rem; }
@@ -248,7 +245,6 @@ form{
     width: 80%;
     border-radius: 5%;
 
-
   }
 
   .normal-button  {
@@ -261,12 +257,11 @@ form{
     border-style: solid;
     width: 20%;
     border-radius: 10%;
-
   }
 
   .normal-button.like{
     background-image: url("https://cdn.iconscout.com/icon/premium/png-256-thumb/pixel-heart-554373.png");
-background-size: 40%;
+    background-size: 40%;
   }
 
   .normal-button.submit{
@@ -274,4 +269,56 @@ background-size: 40%;
   border-color: rgb(236, 236, 236);
   width: 80%;
   padding: 5px;
+  }
+  
+  .index-bg{
+    background-image: url("../images/wallpaper6.jpeg"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .hero{
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    padding: 120px;
+    height: 90vh;
+  }
+
+  .title-index{
+    color: #fff;
+    font-size: 9em;
+  }
+
+  .color-p{
+    color:#fff;
+    font-size: 2em;
+  }
+
+  .fixed-pos{
+    position: fixed;
+    // top: calc(0px + 56px + 640px);
+    top: 0px;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: rgba(95,186,233,0.4);
+  }
+
+  .favs-title{
+    display: block;
+    padding: 30px 0;
+    border-bottom: rgba(0, 0, 0, 0.3);
+  }
+
+  .a-suggestion{
+    margin: 10px;
+
+  }
+  .suggestion-a{
+    display: block;
   }

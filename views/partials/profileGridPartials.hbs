@@ -1,17 +1,17 @@
 <div class="col-md-4">
 
   <div class="card" style="width: 18rem;">
-    <div class="background-image" style='background: url("{{imgPath}}")center no-repeat; height: 300px; width: 300px;'>
-      {{#each elements}}
-      <div
-        style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
-        class='planets'></div>
-      {{/each}}
-    </div>
+    <a href="/card/{{_id}}">
+      <div class="background-image" style='background: url("{{imgPath}}")center no-repeat; height: 300px; width: 300px;'>
+        {{#each elements}}
+        <div
+          style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
+          class='planets'></div>
+        {{/each}}
+      </div>
+    </a>
     <div class="card-body">
       <p class="card-text">{{text}}</p>
-
-      
     </div>
   </div>
 </div>
