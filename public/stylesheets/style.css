@@ -36,7 +36,8 @@ a {
 
 #saveCard {
   width: 40px;
-  height: 40px; }
+  height: 40px;
+  margin-top: 5px; }
 
 #friendEmail {
   background-color: #f8f8f4;
@@ -74,6 +75,11 @@ a {
   box-shadow: inset 0px 0px 8px 5px rgba(0, 0, 0, 0.9);
   background-size: cover; }
 
+.plantes :hover {
+  border-color: red;
+  border-width: 1px;
+  border-style: solid; }
+
 #message {
   position: absolute; }
 
@@ -82,90 +88,6 @@ a {
   height: 100%;
   object-fit: cover; }
 
-<<<<<<< HEAD
-.background-image {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center; }
-
-#shareCard {
-  margin-top: 0px;
-  background-size: 60%;
-  background-image: url("https://cdn2.iconfinder.com/data/icons/mini-icon-set-communication/91/Communication_10-512.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 18px 18px;
-  background-color: #f8f8f4;
-  border-style: none;
-  width: 20%;
-  border-radius: 10%; }
-
-.card {
-  height: 100%;
-  width: 100%; }
-
-.owner-header {
-  height: 15%;
-  padding-top: 50px; }
-  .owner-header h4 h6 {
-    margin-bottom: 20px; }
-
-.comment-list {
-  height: 40vh;
-  overflow: hidden;
-  overflow-y: scroll;
-  background-color: #fffdf9;
-  margin: 0px, 20px;
-  width: 90%;
-  margin: auto;
-  border-radius: 2%; }
-
-.comment-container {
-  border-top: 1px;
-  border-color: #252525;
-  margin: 20px;
-  text-align: left; }
-
-.email-to-share {
-  background-color: #f8f8f4;
-  border-style: solid;
-  margin: auto;
-  border: none;
-  padding: 10px 5px;
-  width: 60%; }
-
-.message-for-friend {
-  background-color: #f8f8f4;
-  border-style: solid;
-  margin: auto;
-  border: none;
-  padding: 30px 5px;
-  width: 80%;
-  border-radius: 5%; }
-
-.normal-button {
-  margin-top: 0px;
-  background-size: 60%;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 18px 18px;
-  background-color: #f8f8f4;
-  border-style: solid;
-  width: 20%;
-  border-radius: 10%; }
-
-.normal-button.like {
-  background-image: url("https://cdn.iconscout.com/icon/premium/png-256-thumb/pixel-heart-554373.png");
-  background-size: 40%; }
-
-.normal-button.submit {
-  border-width: 0.5px;
-  border-color: #ececec;
-  width: 80%;
-  padding: 5px; }
-=======
 .wrapper {
   display: flex;
   align-items: center;
@@ -220,6 +142,140 @@ form {
   padding-right: 10%;
   border-radius: 50%;
   border: 1px solid #bcc9ce; }
->>>>>>> 22fe4cb9a401050560146ffc0278f692d29ac59a
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+#shareCard {
+  margin-top: 0px;
+  background-size: 60%;
+  background-image: url("https://cdn2.iconfinder.com/data/icons/mini-icon-set-communication/91/Communication_10-512.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 18px 18px;
+  background-color: #f8f8f4;
+  border-style: none;
+  width: 20%;
+  border-radius: 10%; }
+
+.card {
+  height: 100%;
+  width: 100%; }
+
+.owner-header {
+  height: 15%;
+  padding-top: 50px; }
+  .owner-header h4 h6 {
+    margin-bottom: 20px; }
+
+.comment-list {
+  height: 30vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: #fffdf9;
+  margin: 0px, 20px;
+  width: 90%;
+  margin: 20px auto;
+  border-radius: 2%; }
+
+.comment-container {
+  border-top: 1px;
+  border-color: #252525;
+  margin: 20px;
+  text-align: left; }
+
+.email-to-share {
+  background-color: #f8f8f4;
+  border-style: solid;
+  margin: auto;
+  border: none;
+  padding: 10px 5px;
+  width: 60%; }
+
+.message-for-friend {
+  background-color: #f8f8f4;
+  border-style: solid;
+  margin: auto;
+  border: none;
+  padding: 30px 5px;
+  margin-bottom: 10px;
+  width: 80%;
+  border-radius: 5%; }
+
+.normal-button {
+  margin-top: 0px;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 18px 18px;
+  background-color: #f8f8f4;
+  border-style: solid;
+  width: 20%;
+  border-radius: 10%; }
+
+.normal-button.like {
+  background-image: url("https://cdn.iconscout.com/icon/premium/png-256-thumb/pixel-heart-554373.png");
+  background-size: 40%;
+  display: block;
+  margin-left: 10%;
+  z-index: 10; }
+
+.normal-button.submit {
+  border-width: 0.5px;
+  border-color: #ececec;
+  width: 80%;
+  padding: 5px; }
+
+.element-info {
+  display: flex;
+  align-items: center;
+  height: 90vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-right: 1px solid #929292;
+  z-index: 100;
+  color: #fffdf9;
+  text-align: center;
+  text-align: center;
+  text-justify: auto;
+  transition: .5s; }
+
+.element-info-text {
+  line-height: 2rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #e9e9e9; }
+
+.element-info.hide {
+  transition: 0.5s ease;
+  display: none;
+  padding: 0; }
+
+.element-info.show {
+  transition: 0.5s ease;
+  display: flex;
+  width: 30vh;
+  padding: 25px; }
+
+.home-card-wrapper {
+  margin: 20px 15px;
+  width: 100%; }
+
+.card-body > a > h6 {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 1.2rem; }
+
+.comment-header {
+  width: 100%;
+  text-align: rigth; }
+
+.comments-article {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

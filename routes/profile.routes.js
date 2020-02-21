@@ -9,11 +9,6 @@ const Elements = require('../models/elements.model')
 const uploadCloud = require('../configs/cloudinary.config')
 
 router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
-<<<<<<< HEAD
-  console.log("tmabien entra aquiiii")
-=======
-
->>>>>>> 22fe4cb9a401050560146ffc0278f692d29ac59a
   const profilesToShow = []
 
   User.find()

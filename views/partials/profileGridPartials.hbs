@@ -1,35 +1,27 @@
 <div class="col-md-4">
+  <div class="home-card-wrapper">
+    <div class="card" style="width: 100%;">
+      <a href="/card/{{_id}}">
+        <div class="background-image-cards"
+          style='background: url("{{imgPath}}")center no-repeat; height: 300px; width: 100%;'>
+          {{#each elements}}
+          <div
+            style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
+            class='planets'></div>
+          {{/each}}
+        </div>
+      </a>
 
-  <div class="card" style="width: 18rem;">
-    <div class="background-image" style='background: url("{{imgPath}}")center no-repeat; height: 300px; width: 300px;'>
-      {{#each elements}}
-      <div
-        style='background: url("{{path}}")center no-repeat; top:{{posy}}%;left:{{posx}}%; height:{{height}}%; width:{{width}}%;'
-        class='planets'></div>
-      {{/each}}
-    </div>
-    <div class="card-body">
-      <p class="card-text">{{text}}</p>
-
-      
+      <div class="card-body">
+        <a href="/profile/{{userID._id}}">
+          <h6 class="card-title">{{userID.username}}</h6>
+        </a>
+        <p class="card-text">{{text}}</p>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-  .planets {
-    border-radius: 50%;
-    position: absolute;
-    box-shadow: inset 0px 0px 20px 5px rgba(0, 0, 0, 0.9)
-  }
 
-  #picBg {
-
-
-    padding: 200px;
-  }
-
-  .background-image {
-    position: relative;
-  }
 </style>

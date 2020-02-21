@@ -1,29 +1,30 @@
-
 <div class="wrapper card-profile">
   <div class="card-white">
     <div class="pictureContainer">
       <div class="radius-picture">
-        <a href="/profile/edit"><img src="{{user.picture}}" id="profilePic" ></img></a>
+        <a href="/profile/edit"><img src="{{user.picture}}" id="profilePic"></img></a>
       </div>
     </div>
-      <a href="/profile/edit"><h1>{{user.username}}</h1></a>
-    </div>
+    <a href="/profile/edit">
+      <h1>{{user.username}}</h1>
+    </a>
+  </div>
 </div>
 
-    <div class="container">
+<div class="container">
   <h1>Cards</h1>
   <div class="row">
     {{#each cards}}
 
-    <a href="">{{>profileGridPartials this}}</a>
+    {{>profileGridPartials this}}</a>
 
     {{/each}}
 
   </div>
-    <div class="col">
-       {{#each suggestions}}
-      <a href="/profile/{{_id}}" class="btn btn-secondary btn-lg">{{username}}</a>
-      {{/each}}
+  <div class="col">
+    {{#each suggestions}}
+    <a href="/profile/{{_id}}" class="btn btn-secondary btn-lg">{{username}}</a>
+    {{/each}}
   </div>
 </div>
 <div class="container">
@@ -37,4 +38,3 @@
   </div>
 
 </div>
-
