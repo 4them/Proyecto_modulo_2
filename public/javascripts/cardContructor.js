@@ -1,6 +1,6 @@
 
 
-const axiosApp = axios.create({ baseURL: "http://st:3000/card" })//  http://st:3000/card https://app-4them.herokuapp.com/card
+const axiosApp = axios.create({ baseURL: "https://app-4them.herokuapp.com/card" })//  http://localhost:3000/card https://app-4them.herokuapp.com/card
 const nasaAPIHandler = new APIHandler();
 
 const cardFigure = document.querySelector("card")

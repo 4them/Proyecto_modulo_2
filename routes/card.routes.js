@@ -143,6 +143,7 @@ router.post("/delete/:id", (req, res, next) => {
 //send and create
 router.post('/api/send/new-card', (req, res, next) => {
   let listIdElem = []
+  console.log("ENTRO A SEND")
 
   Element.insertMany(req.body.elements)
     .then(allElements => allElements.forEach(elem => listIdElem.push(elem._id)))
@@ -166,10 +167,9 @@ router.post('/api/send/new-card', (req, res, next) => {
         from: '"Ironhacker Email 👻" <myawesome@project.com>',
         to: req.body.friendEmail,
         subject: `${req.user.username} is sending you a new universe specially for you `,
-        text: `${req.body.card.text}, to check you personaul universe check out this link http://http://localhost:3000/card/${cardId._id}`,
-        html: `<b>${req.body.card.text}, to check you personaul universe check out this link http://http://localhost:3000/card/${cardId._id}</b>`
+        text: `${req.body.card.text}, to check you personaul universe check out this link https://app-4them.herokuapp.com/card/${cardId._id}`,
+        html: `<b>${req.body.card.text}, to check you personaul universe check out this link https://app-4them.herokuapp.com/card/${cardId._id}</b>`
       })
-      console.log(`este es el correo de tu amigo ${req.body.friendEmail}, este es tu usuario ${req.user.username}, este es el texto de la carta ${req.body.card.text}, y este es el link http://http://localhost:3000/card/${cardId._id}`)
 
       User.findByIdAndUpdate(req.user._id, userProperty)
         .then(x => {
