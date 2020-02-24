@@ -2,7 +2,7 @@
 // const axios = require("axios")
 
 // const galaxyGalery = "Galaxy%20Evolution%20Explorer%20GALEX&page=1&media=image&yearStart=1998&yearEnd=2020"
-const galaxyGalery = "Spitzer Space Telescope"
+const galaxyGalery = "Spitzer"
 const nasa_id = "PIA04279"
 
 class APIHandler {

@@ -96,8 +96,8 @@ $buttom-color : rgb(248, 248, 244);
     background-size: cover;
   }
 
-  .plantes :hover{
-      border-color:red;
+  .planets:hover{
+      border-color:rgba(248, 248, 244, 0.05);
       border-width: 1px;
       border-style: solid;
     }
@@ -185,7 +185,16 @@ form{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    position: relative;
   }
+
+  .background-image:hover {
+      border-color:rgba(228, 255, 154, 0.05);
+      border-width: 1px;
+      border-style: solid;
+  }
+
+
 
   #shareCard {
     margin-top: 0px;
@@ -300,7 +309,7 @@ z-index: 10;
     text-align: center;  
     text-align: center;
     text-justify: auto;
-    transition: .5s;
+    transition: .5s ease-in;
   }
 
   .element-info-text{
@@ -349,3 +358,8 @@ z-index: 10;
     text-align: center;
   }
 
+  .background-image-cards{
+
+    object-fit: cover;
+    background-size: cover;
+  }

@@ -29,6 +29,7 @@ document.onkeyup = e => {
           //update card object
           card.imagePath = imageUrl
 
+          console.log(imageUrl)
         })
 
       nasaAPIHandler.getBackgroundDescription(numberLookUp)
