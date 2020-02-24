@@ -76,7 +76,11 @@ a {
   background-size: cover; }
 
 .planets:hover {
+<<<<<<< HEAD
   border-color: rgba(248, 248, 244, 0.05);
+=======
+  border-color: rgba(255, 255, 255, 0.5);
+>>>>>>> 645d176a246ec85a5ef4ed261f9312298de2293e
   border-width: 1px;
   border-style: solid; }
 
@@ -95,7 +99,7 @@ a {
   justify-content: center;
   width: 100%;
   min-height: 100%;
-  padding: 150px; }
+  padding: 120px; }
 
 input {
   text-align: center;
@@ -153,6 +157,11 @@ form {
 
 .background-image:hover {
   border-color: rgba(228, 255, 154, 0.05);
+  border-width: 1px;
+  border-style: solid; }
+
+.background-image:hover {
+  border-color: rgba(255, 255, 255, 0.5);
   border-width: 1px;
   border-style: solid; }
 
@@ -235,6 +244,50 @@ form {
   border-color: #ececec;
   width: 80%;
   padding: 5px; }
+
+.index-bg {
+  background-image: url("../images/wallpaper6.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.hero {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 120px;
+  height: 90vh; }
+
+.title-index {
+  color: #fff;
+  font-size: 9em; }
+
+.color-p {
+  color: #fff;
+  font-size: 2em; }
+
+.fixed-pos {
+  position: fixed;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: rgba(95, 186, 233, 0.4); }
+
+.favs-title {
+  display: block;
+  padding: 30px 0;
+  border-bottom: rgba(0, 0, 0, 0.3); }
+
+.a-suggestion {
+  margin: 10px; }
+
+.suggestion-a {
+  display: block; }
 
 .element-info {
   display: flex;
